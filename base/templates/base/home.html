@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<h1>Home template</h1>
+
+<div>
+
+    <div>
+        {% for league in leagues %}
+            <div>
+                <h5>{{league.id}} -- <a href="{% url 'league' league.id %}">{{league.name}}</a></h5>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+</div>
+
+{% endblock %}
