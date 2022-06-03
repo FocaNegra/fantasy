@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 
 class Region(models.Model):
     name = models.CharField(max_length=40)
+    url_schedule = models.CharField(max_length=40, blank=True, null=True)
+    url_team = models.CharField(max_length=40, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -18,13 +20,49 @@ class Region(models.Model):
 class League(models.Model):
 
     name = models.CharField(max_length=200)
+    host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    admins = models.ManyToManyField(User, related_name='admins', blank=True)
+    participants = models.ManyToManyField(User, related_name='participants', blank=True)
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
-    is_active = BooleanField()
+    team_alias = models.CharField(max_length=100, null=True)
+    status = models.CharField(max_length=50, default="active")
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+
+class Player(models.Model):
+    name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    alias = models.CharField(max_length=50)
+    full_name = models.CharField(max_length=200)
+    position = models.CharField(max_length=50)
+    match_report_name = models.CharField(max_length=200)
+    jersey_number = models.CharField(max_length=3)
+    league = models.ForeignKey(League, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.full_name
+
+class Match_Report(models.Model):
+    week = models.CharField(max_length=4)
+    season = models.CharField(max_length=12)
+    game_date = models.DateTimeField()
+    url = models.CharField(max_length=200)
+    status = models.CharField(max_length=30)
+    league = models.ForeignKey(League, on_delete=models.CASCADE)
+    oponent = models.CharField(max_length=200)
+    home_game = models.CharField(max_length=8)
+    team_enddate = models.DateTimeField()
+    punctuation_enddate = models.DateTimeField()
+    last_update = models.DateTimeField(auto_now=True)
+    next_update = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.season}_{self.week}'
+
 
 class User_League(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
