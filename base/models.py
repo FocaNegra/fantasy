@@ -21,8 +21,7 @@ class League(models.Model):
 
     name = models.CharField(max_length=200)
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    admins = models.ManyToManyField(User, related_name='admins', blank=True)
-    participants = models.ManyToManyField(User, related_name='participants', blank=True)
+    participants = models.ManyToManyField(User, through='User_League', related_name='participants', blank=True)
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
     team_alias = models.CharField(max_length=100, null=True)
     status = models.CharField(max_length=50, default="active")
@@ -67,6 +66,9 @@ class Match_Report(models.Model):
 class User_League(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
+    user_permission = models.CharField(max_length=25, null=True)
+    last_login = models.DateTimeField(auto_now=True, null=True)
+    date_joined = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return f'{self.username}_{self.league}'
