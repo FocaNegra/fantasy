@@ -1,0 +1,31 @@
+<h1>ADMIN PANEL</h1>
+
+<div class="control-league-selector">
+    <form method='POST' action="">
+        {% csrf_token %}
+        <input list="list_leagues" name="league">
+        <datalist id="list_leagues">
+            {% for league in leagues %}
+            <option value={{league.id}}>{{league.name}}</option>
+            {% endfor %}
+        </datalist>
+        <input type="submit" value="Submit">
+    </form>
+    <form method='POST' action="">
+        {% csrf_token %}
+        <select name="control-options" id="control-options" size="4" multiple>
+            <option value="calendar">Calendar</option>
+            <option value="reports">Reports</option>
+            <option value="users">Users</option>
+            <option value="players">Players</option>
+        </select>
+        <input type="submit" value="Update values">
+    </form>
+</div>
+
+<div class="control-calendar">
+    <div class="control-calendar-table">
+        <p>{{league.name}}</p>
+
+    </div>
+</div>
