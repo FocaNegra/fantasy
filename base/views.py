@@ -60,5 +60,17 @@ def home(request):
 
 def league(request, pk):
     league = League.objects.get(id=pk)
-    context = {'leagues':league}
+    context = {'leagues': league}
     return render(request, 'base/league.html', context)
+
+def control(request):
+    leagues = League.objects.order_by('id')[:5]
+    league = {}
+
+    if request.method == 'POST':
+        league_id = request.POST.get('league')
+        league = League.objects.get(id=league_id)
+        
+    context = {'leagues': leagues, 'league': league}
+    return render(request, 'base/control.html', context)
+

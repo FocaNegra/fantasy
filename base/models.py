@@ -27,6 +27,8 @@ class League(models.Model):
     status = models.CharField(max_length=50, default="active")
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    schedule_url = models.CharField(max_length=300, null=True)
+    team_url = models.CharField(max_length=300, null=True)
 
     def __str__(self):
         return self.name
@@ -45,7 +47,7 @@ class Player(models.Model):
     def __str__(self):
         return self.full_name
 
-class Match_Report(models.Model):
+class Calendar(models.Model):
     week = models.CharField(max_length=4)
     season = models.CharField(max_length=12)
     game_date = models.DateTimeField()
