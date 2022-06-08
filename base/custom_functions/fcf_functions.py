@@ -65,6 +65,7 @@ def get_calendar_data_from_calendar_soup(soup):
             'week': jornada,
             'season': '2021-2022',
             'game_date': data_partit,
+            'result': resultat,
             'url': url_acta_partit,
             'status':status,
             'oponent': equip_contrari,

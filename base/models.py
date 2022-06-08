@@ -52,6 +52,7 @@ class Calendar(models.Model):
     season = models.CharField(max_length=12)
     game_date = models.DateTimeField()
     url = models.CharField(max_length=200)
+    result = models.CharField(max_length=12, null=True)
     status = models.CharField(max_length=30)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
     oponent = models.CharField(max_length=200)

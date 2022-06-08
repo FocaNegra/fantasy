@@ -15,6 +15,7 @@ def get_calendar(league):
             week = row['week'],
             season = row['season'],
             game_date = row['game_date'],
+            result = row['result'],
             url = row['url'],
             status = row['status'],
             league = league,
@@ -27,3 +28,6 @@ def get_calendar(league):
         output_class_list.append(c)
         
     return output_class_list
+
+def update_model(model_to_update, new_model):
+    pass
