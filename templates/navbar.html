@@ -1,6 +1,9 @@
 <a href="/">
     <h1>LOGO</h1>
 </a>
+<a href="{% url 'control' %}">
+    <h3>Control</h3>
+</a>
 
 {% if request.user.is_authenticated %}
 <p>Hola, {{request.user}}</p>

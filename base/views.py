@@ -1,12 +1,16 @@
 from re import I
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import League
+
+from base.custom_functions.insert_functions import insert_calendar
+from .models import  League, Calendar
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from .custom_functions.admin_functions import get_calendar
+from .custom_functions.insert_functions import insert_calendar
 
 # Create your views here.
 
@@ -73,4 +77,20 @@ def control(request):
         
     context = {'leagues': leagues, 'league': league}
     return render(request, 'base/control.html', context)
+
+def control_league(request, pk):
+    league = League.objects.get(id=pk)
+    calendar = Calendar.objects.filter(league=league)
+    if request.method == 'POST':
+        try:
+            options = dict(request.POST)['control-options']
+        except:
+            options = []
+        if options:
+            for option in options:
+                if option == 'calendar':
+                    insert_calendar(get_calendar(league), league)
+    calendar = Calendar.objects.filter(league=league)                            
+    context = {'league': league, 'calendar': calendar}
+    return render(request, 'base/control_league.html', context)
 

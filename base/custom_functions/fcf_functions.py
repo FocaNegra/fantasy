@@ -1,12 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 import datetime
+import pytz
 
-equip = 'junior-cf-a'
-url_equip = 'https://www.fcf.cat/equip/2022/3cat/' + equip
-url_calendari_equip = 'https://www.fcf.cat/calendari-equip/2022/futbol-11/tercera-catalana/grup-6/' + equip
-url_acta = 'https://www.fcf.cat/acta/2022/futbol-11/tercera-catalana/grup-6/3cat/planadeu-roureda-club-esportiu-futbol-b/3cat/junior-cf-a'
-
+timezone = pytz.timezone("Europe/Madrid")
 
 def get_soup_from_url(url):
     # input: url del equip a la fcf.
@@ -36,11 +33,12 @@ def get_calendar_data_from_calendar_soup(soup):
     teamName = soup.find('p', class_="m-0 fs-30 va-b bold").getText()
 
     for row in calendarTable:
-        jornada = int(row.find_all('td', class_='tc')[0].text)
+        jornada = row.find_all('td', class_='tc')[0].text
         dia_partit = row.find_all('td', class_='tc')[1].text
         hora_partit = row.find_all('td', class_='tc')[2].text
         data_partit = datetime.datetime(int(dia_partit[6:]), int(dia_partit[3:5]), int(dia_partit[:2]),
                                         int(hora_partit[1:3]), int(hora_partit[4:6]))
+        data_partit = timezone.localize(data_partit).astimezone(pytz.utc)
         timedelta_team_submit = datetime.timedelta(hours=-2)
         enddate_for_team_submit = data_partit + timedelta_team_submit
         timedelta_punctuation = datetime.timedelta(days=2)
@@ -70,6 +68,7 @@ def get_calendar_data_from_calendar_soup(soup):
             'url': url_acta_partit,
             'status':status,
             'oponent': equip_contrari,
+            'hosting': is_local,
             'team_enddate': enddate_for_team_submit,
             'punctuation_enddate': enddate_for_punctuation,
             'next_update': next_update,

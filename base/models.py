@@ -55,14 +55,14 @@ class Calendar(models.Model):
     status = models.CharField(max_length=30)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
     oponent = models.CharField(max_length=200)
-    home_game = models.CharField(max_length=8)
+    hosting = models.CharField(max_length=8)
     team_enddate = models.DateTimeField()
     punctuation_enddate = models.DateTimeField()
     last_update = models.DateTimeField(auto_now=True)
     next_update = models.DateTimeField()
 
     def __str__(self):
-        return f'{self.season}_{self.week}'
+        return f'{self.league}_{self.season}_{self.week}'
 
 
 class User_League(models.Model):
