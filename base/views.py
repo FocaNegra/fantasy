@@ -9,8 +9,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .custom_functions.admin_functions import get_calendar
-from .custom_functions.insert_functions import insert_calendar
+from .custom_functions.admin_functions import get_calendar, get_players
+from .custom_functions.insert_functions import insert_calendar, insert_players
 
 # Create your views here.
 
@@ -90,6 +90,8 @@ def control_league(request, pk):
             for option in options:
                 if option == 'calendar':
                     insert_calendar(get_calendar(league), league)
+                if option == 'players':
+                    insert_players(get_players(league), league)
     calendar = Calendar.objects.filter(league=league)                            
     context = {'league': league, 'calendar': calendar}
     return render(request, 'base/control_league.html', context)

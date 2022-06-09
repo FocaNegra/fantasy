@@ -37,15 +37,17 @@ class League(models.Model):
 class Player(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    alias = models.CharField(max_length=50)
-    full_name = models.CharField(max_length=200)
-    position = models.CharField(max_length=50)
+    alias = models.CharField(max_length=50, null=True, blank=True)
+    position = models.CharField(max_length=50, null=True, blank=True)
     match_report_name = models.CharField(max_length=200)
-    jersey_number = models.CharField(max_length=3)
+    jersey_number = models.CharField(max_length=3, null=True, blank=True)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.full_name
+        if self.alias == '' or self.alias == None:
+            return f"{self.name} {self.last_name}"
+        else:
+            return f'{self.name} "{self.alias}" {self.last_name}'
 
 class Calendar(models.Model):
     week = models.CharField(max_length=4)

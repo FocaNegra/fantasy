@@ -1,6 +1,6 @@
 from calendar import week
 from .fcf_functions import *
-from ..models import Calendar
+from ..models import Calendar, Player
 
 
 def get_calendar(league):
@@ -31,3 +31,23 @@ def get_calendar(league):
 
 def update_model(model_to_update, new_model):
     pass
+
+def get_players(league):
+    output_class_list = []
+    url = league.team_url    
+    soup = get_soup_from_url(url)
+    player_list = get_all_players_list_from_team_soup(soup)
+    playerobj_list = normalize_player_names(player_list, 'fcf')
+    for plobj in playerobj_list:
+        p = Player(
+            name = plobj['name'],
+            last_name = plobj['last_name'],
+            alias = plobj['alias'],
+            match_report_name = plobj['match_report_name'],
+            league = league,
+            position = None,
+            jersey_number = None,
+        )
+        output_class_list.append(p)
+
+    return output_class_list

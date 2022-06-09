@@ -19,10 +19,27 @@ def get_url_dicc_from_team(team):
 def get_all_players_list_from_team_soup(soup):
     playerList = []
     mainColumn = soup.find_all('div', class_='col-md-4')
-    playerTable = mainColumn[1].find_all('td')
+    playerTable = mainColumn[1].find('table', class_="fcftable w-100 mb-20").find_all('td')
     for player in playerTable:
         playerList.append(player.text.strip())
     return playerList
+
+def normalize_player_names(player_list, region):
+    output_list = []
+    if region == 'fcf':
+        for match_report_name in player_list:
+            last_name = match_report_name.split(", ")[0].lower()
+            name = match_report_name.split(", ")[1].lower()
+            player_dict = {
+                'name': name,
+                'last_name': last_name,
+                'alias': "",
+                'match_report_name': match_report_name,
+            }
+            output_list.append(player_dict)
+    else:
+        raise Exception("The system is not ready to normaliza player data from other regions than 'fcf'")
+    return output_list
 
 def get_team_name_from_calendar_soup(soup):
     return soup.find('p', class_ = 'm-0 fs-30 va-b bold').text.strip()
