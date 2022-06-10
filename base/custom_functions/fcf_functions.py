@@ -300,3 +300,27 @@ def get_full_data_from_acta(url, is_local):
 
     else:
         return [[]]
+
+def get_groups_from_category(html_div, list = []):
+    soup = BeautifulSoup(html_div, 'lxml')
+    html_group_list = soup.find_all('a', class_="grupo")
+    for group in html_group_list:
+        group_name = group.find('p').get_text()
+        group_url = group['href']
+        list.append({'category': "category",'group_name': group_name, 'group_url': group_url, 'standings_url': group_url.replace('resultats','classificacio')})
+    return list
+
+def get_teams_from_group(group_dict):
+    list = []
+    soup = get_soup_from_url(group_dict['standings_url'])
+    team_rowlist = soup.find('table', class_="fcftable-e w-100 fs-12_tp fs-11_ml").find_all('tr')
+    for team in team_rowlist:
+        team_name = team.find('td', class_='tl resumida').find('a', href=True).get_text()
+        schedule_url = team.find('td', class_='tl resumida').find('a', href=True).get_text()
+        team_soup = get_soup_from_url(schedule_url)
+        team_url = team_soup.find('div', class_="col-md-12 p-0").find('a', href=True)['href']
+        alias = schedule_url.split('/')[-1]
+        list.append(
+            {'team_name': team_name, 'schedule_url': schedule_url, 'team_url': team_url, 'alias': alias}
+        )
+    return list

@@ -1,5 +1,6 @@
 from asyncio.windows_events import NULL
 from email.policy import default
+from unicodedata import category
 from django.db import models
 from django.forms import BooleanField
 from django.contrib.auth.models import User
@@ -15,6 +16,26 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
+class Region_Group(models.Model):
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    category = models.CharField(max_length=100, null=True)
+    group_name = models.CharField(max_length=100, null=True)
+    group_url = models.CharField(max_length=300)
+    standing_url = models.CharField(max_length=300)
+
+    def __str__(self):
+        return f'{self.region}/{self.category}/{self.group_name}'
+
+
+class Region_Team(models.Model):
+    region_group = models.ForeignKey(Region_Group, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True)
+    alias = models.CharField(max_length=20, null=True)
+    schedule_url = models.CharField(max_length=300, null=True)
+    team_url = models.CharField(max_length=300, null=True)
+
+    def __str__(self):
+        return f'{self.region_group}/{self.alias}'
 
 
 class League(models.Model):
@@ -22,13 +43,10 @@ class League(models.Model):
     name = models.CharField(max_length=200)
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     participants = models.ManyToManyField(User, through='User_League', related_name='participants', blank=True)
-    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
-    team_alias = models.CharField(max_length=100, null=True)
+    region_team = models.ForeignKey(Region_Team, on_delete=models.SET_NULL, null=True)
     status = models.CharField(max_length=50, default="active")
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    schedule_url = models.CharField(max_length=300, null=True)
-    team_url = models.CharField(max_length=300, null=True)
 
     def __str__(self):
         return self.name
@@ -77,3 +95,6 @@ class User_League(models.Model):
 
     def __str__(self):
         return f'{self.username}_{self.league}'
+
+
+
