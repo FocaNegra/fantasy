@@ -1,6 +1,7 @@
 from calendar import week
 from .fcf_functions import *
 from ..models import Calendar, Player
+from .fcf_competitions_to_add import competitions_to_add
 
 
 def get_calendar(league):
@@ -51,3 +52,12 @@ def get_players(league):
         output_class_list.append(p)
 
     return output_class_list
+
+def get_region_groups(competitions_to_add):
+    group_list = []
+    output_dict = {}
+    for category in competitions_to_add:
+        get_groups_from_category(category, group_list)
+    output_dict['groups'] = group_list
+
+    return output_dict

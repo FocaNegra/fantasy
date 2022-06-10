@@ -1,11 +1,12 @@
 <h1>{{league.id}}. {{league.name}}</h1>
 <form method='POST' action="">
     {% csrf_token %}
-    <select name="control-options" id="control-options" size="4" multiple>
+    <select name="control-options" id="control-options" size="5" multiple>
         <option value="calendar">Calendar</option>
         <option value="reports">Reports</option>
         <option value="users">Users</option>
         <option value="players">Players</option>
+        <option value="region_teams">Region teams</option>
     </select>
     <input type="submit" value="Update values">
 </form>

@@ -301,13 +301,14 @@ def get_full_data_from_acta(url, is_local):
     else:
         return [[]]
 
-def get_groups_from_category(html_div, list = []):
-    soup = BeautifulSoup(html_div, 'lxml')
+def get_groups_from_category(category, list = []):
+
+    soup = BeautifulSoup(category['html_div'], 'lxml')
     html_group_list = soup.find_all('a', class_="grupo")
     for group in html_group_list:
         group_name = group.find('p').get_text()
         group_url = group['href']
-        list.append({'category': "category",'group_name': group_name, 'group_url': group_url, 'standings_url': group_url.replace('resultats','classificacio')})
+        list.append({'category': category['name'], 'group_name': group_name, 'group_url': group_url, 'standings_url': group_url.replace('resultats','classificacio')})
     return list
 
 def get_teams_from_group(group_dict):
