@@ -1,7 +1,6 @@
 from calendar import week
 from .fcf_functions import *
-from ..models import Calendar, Player
-from .fcf_competitions_to_add import competitions_to_add
+from ..models import Calendar, Player, Region_Group, Region_Team
 
 
 def get_calendar(league):
@@ -53,11 +52,37 @@ def get_players(league):
 
     return output_class_list
 
-def get_region_groups(competitions_to_add):
+def get_region_groups(competitions_to_add, region):
     group_list = []
-    output_dict = {}
+    output_class_list = []
     for category in competitions_to_add:
-        get_groups_from_category(category, group_list)
-    output_dict['groups'] = group_list
+        group_list = get_groups_from_category(category, group_list)
+        for group in group_list:
+            g = Region_Group(
+                region = region,
+                category = group['category'],
+                group_name = group['group_name'],
+                group_url = group['group_url'],
+                standing_url = group['standings_url'],
+            )
+            output_class_list.append(g)
 
-    return output_dict
+    return output_class_list
+
+def get_teams_from_groups(group_list):
+    output_dict_list = []
+    for group in group_list:
+        group_dict = {'group': group}
+        teams_list = []
+        team_list = get_teams_from_group(group)
+        for team_item in team_list:
+            t = Region_Team(
+                name = team_item['team_name'],
+                schedule_url = team_item['schedule_url'],
+                team_url = team_item['team_url'],
+                alias = team_item['alias'],
+            )
+            teams_list.append(t)
+        group_dict['list_teams'] = teams_list
+        output_dict_list.append(group_dict)
+    return output_dict_list

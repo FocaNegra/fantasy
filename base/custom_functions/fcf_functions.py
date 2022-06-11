@@ -311,17 +311,17 @@ def get_groups_from_category(category, list = []):
         list.append({'category': category['name'], 'group_name': group_name, 'group_url': group_url, 'standings_url': group_url.replace('resultats','classificacio')})
     return list
 
-def get_teams_from_group(group_dict):
+def get_teams_from_group(group_class):
     list = []
-    soup = get_soup_from_url(group_dict['standings_url'])
-    team_rowlist = soup.find('table', class_="fcftable-e w-100 fs-12_tp fs-11_ml").find_all('tr')
+    soup = get_soup_from_url(group_class.standing_url)
+    team_rowlist = soup.find('table', class_="fcftable-e w-100 fs-12_tp fs-11_ml").find_all('tr')[2:]
     for team in team_rowlist:
-        team_name = team.find('td', class_='tl resumida').find('a', href=True).get_text()
-        schedule_url = team.find('td', class_='tl resumida').find('a', href=True).get_text()
-        team_soup = get_soup_from_url(schedule_url)
-        team_url = team_soup.find('div', class_="col-md-12 p-0").find('a', href=True)['href']
-        alias = schedule_url.split('/')[-1]
-        list.append(
-            {'team_name': team_name, 'schedule_url': schedule_url, 'team_url': team_url, 'alias': alias}
-        )
+        try:
+            team_name = team.find('td',  class_='tl resumida').find('a', href=True).get_text()
+            schedule_url = team.find('td',  class_='tl resumida').find('a', href=True)['href']
+            team_url = team.find('td', class_="tc pr-0").find('a', href=True)['href']
+            alias = schedule_url.split('/')[-1]
+            list.append({'team_name': team_name, 'schedule_url': schedule_url, 'team_url': team_url, 'alias': alias, 'region_group': group_class})
+        except:
+            pass
     return list

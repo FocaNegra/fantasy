@@ -1,16 +1,18 @@
 from re import I
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from base.custom_functions.fcf_functions import get_groups_from_category
 
 from base.custom_functions.insert_functions import insert_calendar
-from .models import  League, Calendar
+from .models import  League, Calendar, Region
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .custom_functions.admin_functions import get_calendar, get_players
-from .custom_functions.insert_functions import insert_calendar, insert_players
+from .custom_functions.admin_functions import get_calendar, get_players, get_region_groups, get_teams_from_groups
+from .custom_functions.insert_functions import insert_calendar, insert_players, insert_region_groups, insert_region_teams
+from .custom_functions.fcf_competitions_to_add import *
 
 # Create your views here.
 
@@ -92,6 +94,11 @@ def control_league(request, pk):
                     insert_calendar(get_calendar(league), league)
                 if option == 'players':
                     insert_players(get_players(league), league)
+                if option == 'region_teams':
+                    fcf_region = Region.objects.get(name='fcf')
+                    grouplist_to_add = get_region_groups(competitions_to_add3, fcf_region)
+                    insert_region_groups(grouplist_to_add, fcf_region)
+                    insert_region_teams(get_teams_from_groups(grouplist_to_add))
     calendar = Calendar.objects.filter(league=league)                            
     context = {'league': league, 'calendar': calendar}
     return render(request, 'base/control_league.html', context)

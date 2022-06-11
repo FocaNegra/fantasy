@@ -2,7 +2,9 @@ competitions_to_add = [
     {
         'name': 'PRIMERA DIVISIÓN RFEF',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/primera-division-rfef/grup-2"><p>GRUP 2</p></a></div>'
-    },
+    }]
+    
+competitions_to_add6 = [
     {
         'name': 'SEGUNDA DIVISIÓN RFEF',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/segunda-division-rfef/grup-3"><p>GRUP 3</p></a></div>'
@@ -10,7 +12,8 @@ competitions_to_add = [
     {
         'name': 'TERCERA  DIVISIÓN FREF',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-division-rfef/grup-v"><p>GRUP V</p></a></div>'
-    },
+    }]
+competitions_to_add2 = [
     {
         'name': 'PRIMERA CATALANA',
         'html_div': '<div class="grup"><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/primera-catalana/grup-1"><p>GRUP 1</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/primera-catalana/grup-2"><p>GRUP 2</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/primera-catalana/grup-3"><p>GRUP 3</p></a></div>'
@@ -22,7 +25,8 @@ competitions_to_add = [
     {
         'name': 'TERCERA CATALANA',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-1"><p>GRUP 1</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-2"><p>GRUP 2</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-3"><p>GRUP 3</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-4"><p>GRUP 4</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-5"><p>GRUP 5</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-6"><p>GRUP 6</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-7"><p>GRUP 7</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-8"><p>GRUP 8</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-9"><p>GRUP 9</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-10"><p>GRUP 10</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-11"><p>GRUP 11</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-12"><p>GRUP 12</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-13"><p>GRUP 13</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-14"><p>GRUP 14</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-15"><p>GRUP 15</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-16"><p>GRUP 16</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-17"><p>GRUP 17</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-18"><p>GRUP 18</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/tercera-catalana/grup-19"><p>GRUP 19</p></a></div>'
-    },
+    }]
+competitions_to_add3 = [
     {
         'name': 'QUARTA CATALANA',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-1"><p>GRUP 1</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-2"><p>GRUP 2</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-3"><p>GRUP 3</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-4"><p>GRUP 4</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-5"><p>GRUP 5</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-6"><p>GRUP 6</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-7"><p>GRUP 7</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-8"><p>GRUP 8</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-9"><p>GRUP 9</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-10"><p>GRUP 10</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-11"><p>GRUP 11</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-12"><p>GRUP 12</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-13"><p>GRUP 13</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-14"><p>GRUP 14</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-15"><p>GRUP 15</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-16"><p>GRUP 16</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-17"><p>GRUP 17</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-20"><p>GRUP 20</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-21"><p>GRUP 21</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-23"><p>GRUP 23</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-24"><p>GRUP 24</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-27"><p>GRUP 27</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-28"><p>GRUP 28</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-29"><p>GRUP 29</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/quarta-catalana/grup-30"><p>GRUP 30</p></a></div>'
@@ -34,7 +38,8 @@ competitions_to_add = [
     {
         'name': 'LLIGA NACIONAL JUVENILS',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/lliga-nacional-juvenil/grup-7"><p>GRUP 7</p></a></div>'
-    },
+    }]
+competitions_to_add4 = [
     {
         'name': 'CAMPIONAT CATALUNYA JUVENILS',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/copa/2022/futbol-11/campionat-de-catalunya-juvenil/quadrant"><p>Quadrant</p></a></div>'
@@ -42,7 +47,8 @@ competitions_to_add = [
     {
         'name': 'PREFERENT JUVENILS',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/preferent-juvenils/grup-1"><p>GRUP 1</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/preferent-juvenils/grup-2"><p>GRUP 2</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/preferent-juvenils/grup-3"><p>GRUP 3</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/preferent-juvenils/grup-4"><p>GRUP 4</p></a></div>'
-    },
+    }]
+competitions_to_add5 = [
     {
         'name': 'JUVENIL PRIMERA DIVISIO',
         'html_div': '<div class="grup" style=""><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-1"><p>GRUP 1</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-2"><p>GRUP 2</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-3"><p>GRUP 3</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-4"><p>GRUP 4</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-5"><p>GRUP 5</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-6"><p>GRUP 6</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-7"><p>GRUP 7</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-8"><p>GRUP 8</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-9"><p>GRUP 9</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-10"><p>GRUP 10</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-11"><p>GRUP 11</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-12"><p>GRUP 12</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-13"><p>GRUP 13</p></a><a class="grupo" href="https://www.fcf.cat/resultats/2022/futbol-11/juvenil-primera-divisio/grup-14"><p>GRUP 14</p></a></div>'
