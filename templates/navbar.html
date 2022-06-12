@@ -5,6 +5,10 @@
     <h3>Control</h3>
 </a>
 
+<a href="{% url 'onboard_league' %}">
+    <h3>ONBOARD</h3>
+</a>
+
 {% if request.user.is_authenticated %}
 <p>Hola, {{request.user}}</p>
 <a href="{% url 'logout' %}">Logout</a>

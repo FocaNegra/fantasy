@@ -58,6 +58,18 @@ def registerPage(request):
 
     return render(request, 'base/login_register.html', context)
 
+def onboard_league(request):
+    context = {}
+    return render(request, 'base/onboard_league.html', context)
+
+def join_league(request):
+    context = {}
+    return render(request, 'base/join_league.html', context)
+
+def create_league(request):
+    context = {}
+    return render(request, 'base/create_league.html', context)
+
 
 def home(request):
     leagues = League.objects.all()
