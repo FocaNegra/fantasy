@@ -1,20 +1,25 @@
+{% extends 'secondary.html' %}
+
+{% block content %}
 <div class="onboard">
-    <div class="onboard-container">
-        <a href="{% url 'join_league' %}">
+    <a href="{% url 'join_league' %}">
+        <div class="onboard-container">
             <div class="onboard__join-league">
-                <h2>UNIRME A UNA LIGA EXISTENE</h2>
+                <h2>UNIRME A UNA LIGA EXISTENTE</h2>
                 <P>Únete a una liga ya creada mediante un código</P>
 
             </div>
-        </a>
-    </div>
-    <div class="onboard-container">
-        <a href="{% url 'create_league' %}">
+        </div>
+    </a>
+    <a href="{% url 'create_league' %}">
+        <div class="onboard-container">
             <div class="onboard__create-league">
                 <h2>CREA UNA LIGA DESDE CERO</h2>
                 <P>Crea una liga privada para tus amigos, usando los jugadores reales de tu equipo.</P>
 
             </div>
-        </a>
-    </div>
+        </div>
+    </a>
 </div>
+
+{% endblock content %}

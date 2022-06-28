@@ -1,0 +1,123 @@
+/* 
+GENERAL
+TITLES
+SECONDARY
+ONBOARD
+RESPONSIVE DESIGN
+ */
+
+
+/* GENERAL */
+
+*  {
+	color: #141414;
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: 300;
+	font-size: 1em;
+}
+
+:root {	
+	--chosencolor: #345986;	
+	--color1: #1F2833;  
+	--color2: #0B0C10;      
+	--color3: #45A29E;     
+	--color4: #66FcF1;
+	--grey: #C5C6C7;
+}
+
+body {
+    height: 100vh;	
+    background: linear-gradient(180deg, var(--color1) 0%, #181F27 25%);
+}
+
+/* TITLES */
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color4);
+    letter-spacing: 0.8px;
+    margin-bottom: 0.7rem;
+}
+
+p {
+    color: white
+}
+
+
+/* SECONDARY */
+
+.secondary-header {
+    height: 2rem;
+    display: block;
+
+}
+
+.secondary-header__back-button {
+    margin: 1rem 2rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+    border: 1px solid #92929299;
+    display: flex;	
+	align-items: center;
+	justify-content: center;
+}
+
+.secondary-header__back-button i {
+    font-size: 1.4rem;
+    color: #FFFE;
+}
+
+
+
+
+/* ONBOARD */
+
+.onboard {
+    max-width: 1000px;
+    padding: 1rem 1rem;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.onboard > a {
+    width: 50%;    
+	margin: 20px 10px 20px;
+}
+
+.onboard-container {
+    background: var(--color1);
+    border-radius: 9px;
+	padding: 15px 25px;
+	box-shadow: 0px 0px 10px 5px #0008;
+    height: 100%;
+    min-height: 25rem;
+}
+
+.onboard-container:hover {
+    transform: translate(0, -5px);
+
+}
+
+/* RESPONSIVE DESIGN */
+
+@media only screen and (max-width: 700px) {
+
+    .onboard{
+        flex-wrap: wrap;
+    }
+    .onboard > a {
+        width: 100%;
+        min-height: 10rem;
+        margin: 5px 5px;
+    }
+
+    .onboard-container {
+        min-height: 4rem;
+    }
+
+	
+}
+
