@@ -1,3 +1,15 @@
-<h1>CREATE A LEAGUE</h1>
+{% extends 'secondary.html' %}
 
-<a href="{% url 'home' %}">Home</a>
+{% block content %}
+<div class="vertical-content">
+    <h1>
+        CREAR UNA LIGA NUEVA
+    </h1>
+    <form action="" method="POST">
+        <input type="text" name="league_name" id="" placeholder="Nombre de la liga...">
+
+
+    </form>
+</div>
+    
+{% endblock content %}

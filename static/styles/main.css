@@ -3,6 +3,7 @@ GENERAL
 TITLES
 SECONDARY
 ONBOARD
+CREATE LEAGUE
 RESPONSIVE DESIGN
  */
 
@@ -31,6 +32,15 @@ body {
 }
 
 /* TITLES */
+
+h1 {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--color4);
+    letter-spacing: 0.8px;
+    margin-bottom: 0.7rem;
+  }
+
 
 h2 {
     font-size: 1.1rem;
@@ -100,6 +110,17 @@ p {
     transform: translate(0, -5px);
 
 }
+
+/* CREATE LEAGUE */
+
+.vertical-content {
+    max-width: 1000px;
+    padding: 1rem 1rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* RESPONSIVE DESIGN */
 
