@@ -32,8 +32,7 @@ class Region_Team(models.Model):
     name = models.CharField(max_length=100, null=True)
     alias = models.CharField(max_length=20, null=True)
     schedule_url = models.CharField(max_length=300, null=True)
-    team_url = models.CharField(max_length=300, null=True)
-    
+    team_url = models.CharField(max_length=300, null=True)    
 
     def __str__(self):
         return f'{self.region_group}/{self.alias}'
@@ -88,14 +87,14 @@ class Calendar(models.Model):
 
 
 class User_League(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
     user_permission = models.CharField(max_length=25, null=True)
     last_login = models.DateTimeField(auto_now=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f'{self.username}_{self.league}'
+        return f'{self.user.id}_{self.league.id}'
 
 
 

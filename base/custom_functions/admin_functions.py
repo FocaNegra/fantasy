@@ -1,6 +1,6 @@
 from calendar import week
 from .fcf_functions import *
-from ..models import Calendar, Player, Region_Group, Region_Team
+from ..models import Calendar, League, Player, Region_Group, Region_Team
 
 
 def get_calendar(league):
@@ -50,6 +50,13 @@ def get_players(league):
         )
         output_class_list.append(p)
 
+    return output_class_list
+
+def get_player_list_via_url(url):
+    output_class_list = []   
+    soup = get_soup_from_url(url)
+    player_list = get_all_players_list_from_team_soup(soup)
+    output_class_list = normalize_player_names(player_list, 'fcf')
     return output_class_list
 
 def get_region_groups(competitions_to_add, region):

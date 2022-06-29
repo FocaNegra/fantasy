@@ -4,13 +4,13 @@ from django.http import HttpResponse
 from base.custom_functions.fcf_functions import get_groups_from_category
 
 from base.custom_functions.insert_functions import insert_calendar
-from .models import  League, Calendar, Region
+from .models import  League, Calendar, Region, Region_Group, Region_Team, User_League
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .custom_functions.admin_functions import get_calendar, get_players, get_region_groups, get_teams_from_groups
+from .custom_functions.admin_functions import get_calendar, get_players, get_region_groups, get_teams_from_groups, get_player_list_via_url
 from .custom_functions.insert_functions import insert_calendar, insert_players, insert_region_groups, insert_region_teams
 from .custom_functions.fcf_competitions_to_add import *
 
@@ -62,12 +62,55 @@ def onboard_league(request):
     context = {}
     return render(request, 'base/onboard_league.html', context)
 
+
 def join_league(request):
     context = {}
     return render(request, 'base/join_league.html', context)
 
 def create_league(request):
+    region = Region.objects.get(id=1)
     context = {}
+    player_list = []
+    category = "TERCERA CATALANA"
+    group_str = "GRUP 6"
+    team_id = None
+    league_name = ""
+    region_category = Region_Group.objects.filter(category=category)
+    region_group = region_category.get(group_name=group_str)
+    teams = Region_Team.objects.filter(region_group=region_group).all()
+
+    if request.method == 'POST':
+        
+        if "team_id" in request.POST:
+            team_id = int(request.POST.get('team_id'))
+        if "league_name" in request.POST:
+            league_name = request.POST.get('league_name')
+        if request.POST.get('action') == "Previsualizar equipo":
+            team = Region_Team.objects.get(id=str(team_id))
+            player_list = get_player_list_via_url(team.team_url)
+        if request.POST.get('action') == "Crear liga":
+            team_id = request.POST.get('team_id')
+            region_team = Region_Team.objects.get(id=team_id)
+            name = request.POST.get('league_name')
+            status = 'active'
+
+            if len(name) >= 1:
+                league = League.objects.create(
+                    name = name,
+                    host = request.user,
+                    region_team = region_team,
+                    status = status,
+                )
+                u_l = User_League(
+                    user = request.user,
+                    league = league,
+                    user_permission = 'admin'
+                )
+                u_l.save()
+                return redirect('home')
+    
+    
+    context = {'region_group': region_group, 'teams':teams, 'team_id': team_id, 'league_name': league_name, 'player_list': player_list}
     return render(request, 'base/create_league.html', context)
 
 

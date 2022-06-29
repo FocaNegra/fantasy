@@ -6,10 +6,27 @@
         CREAR UNA LIGA NUEVA
     </h1>
     <form action="" method="POST">
-        <input type="text" name="league_name" id="" placeholder="Nombre de la liga...">
-
-
+        {% csrf_token %}
+        <input type="text" name="league_name" value="{{league_name}}" id="" placeholder="Nombre de la liga...">
+        <select name="team_id" id="" size="{{teams.count}}">
+            {% for team in teams %}
+            {% if team.id == team_id %}
+            <option value="{{team.id}}" selected="selected">{{team.name}}</option>
+            {% else %}
+            <option value="{{team.id}}">{{team.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <input type="submit" value="Previsualizar equipo" name="action">
+        <input type="submit" value="Crear liga" name="action"> 
+        <!-- Alert: If "Previsualizar equipo" is changed, need to be updated in view.create_league -->
     </form>
+    <ul>
+        {% for player in player_list %}
+        <li>{{player.match_report_name }}</li>
+        {% endfor %}
+    </ul>
+
 </div>
     
 {% endblock content %}
