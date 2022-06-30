@@ -65,9 +65,23 @@ def onboard_league(request):
     return render(request, 'base/onboard_league.html', context)
 
 
-def join_league(request):
-    if request.POST.get('action') == "Unirse a la liga":
-        pass
+def join_league(request):    
+    if "token" in request.POST:
+        token = request.POST.get('token').lower()
+        token_exists = League.objects.filter(token_to_join=token).exists()
+
+        if token_exists:
+            league_to_join = League.objects.get(token_to_join=token)
+            player_in_league = User_League.objects.filter(league=league_to_join, user=request.user).exists()
+            if not player_in_league:
+                u_l = User_League(
+                    user = request.user,
+                    league = league_to_join,
+                    user_permission = 'viewer'
+                )
+                u_l.save()
+            return redirect('home')        
+        
     context = {}
     return render(request, 'base/join_league.html', context)
 
