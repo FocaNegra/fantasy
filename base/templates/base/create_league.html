@@ -5,10 +5,10 @@
     <h1>
         CREAR UNA LIGA NUEVA
     </h1>
-    <form action="" method="POST">
+    <form class="create-league__form" action="" method="POST">
         {% csrf_token %}
         <input type="text" name="league_name" value="{{league_name}}" id="" placeholder="Nombre de la liga...">
-        <select name="team_id" id="" size="{{teams.count}}">
+        <select class="card1 create-league__form-card1" name="team_id" id="" size="{{teams.count}}">
             {% for team in teams %}
             {% if team.id == team_id %}
             <option value="{{team.id}}" selected="selected">{{team.name}}</option>
@@ -16,6 +16,9 @@
             <option value="{{team.id}}">{{team.name}}</option>
             {% endif %}
             {% endfor %}
+            <div class='demoScroll sc5'>
+                <div class='h500'>aa</div>
+            </div>
         </select>
         <input type="submit" value="Previsualizar equipo" name="action">
         <input type="submit" value="Crear liga" name="action"> 

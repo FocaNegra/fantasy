@@ -1,6 +1,7 @@
 /* 
 GENERAL
 TITLES
+ASSETS
 SECONDARY
 ONBOARD
 CREATE LEAGUE
@@ -37,8 +38,9 @@ h1 {
     font-size: 1.6em;
     font-weight: bold;
     color: var(--color4);
-    letter-spacing: 0.8px;
-    margin-bottom: 0.7rem;
+    letter-spacing: 0.9px;
+    margin-bottom: 0.9rem;
+    text-align: center;
   }
 
 
@@ -52,6 +54,14 @@ h2 {
 
 p {
     color: white
+}
+
+/* ASSETS */
+
+.card1 {
+    background-color: #0B0C1066;
+	border-left: 5px solid #24AF83CC;
+	box-shadow: 0px 0px 5px 4px #0B0C1066;
 }
 
 
@@ -120,6 +130,31 @@ p {
     display: flex;
     flex-direction: column;
 }
+
+.create-league__form {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.create-league__form-card1 {
+    margin: 2rem;
+    padding: 0.2rem 0rem;
+    overflow: hidden;
+}
+
+.create-league__form-card1 option {
+    color: white;
+    font-size: 1em;
+    padding: 0.2rem 1.2rem 0.2rem;
+    height: min-content;
+
+}
+
+li {
+    color: white;
+}
+
 
 
 /* RESPONSIVE DESIGN */
