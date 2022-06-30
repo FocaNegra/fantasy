@@ -1,8 +1,17 @@
-<h1>JOIN THIS LEAGUE</h1>
-<div>
+{% extends 'secondary.html' %}
+
+{% block content %}
+<div class="vertical-content">
+    <h1>
+        UNIRSE A UNA LIGA YA EXISTENTE
+    </h1>
     <form action="" method="POST">
-        <input type="text" placeholder="codigo de liga">
-        <input type="submit" value="Unirse a liga">
+        {% csrf_token %}
+        <input type="text" placeholder="Codigo de la liga" value="">
+        <input type="submit" value="Unirse a liga"name="action">
     </form>
+    
+
 </div>
-<a href="{% url 'home' %}">Home</a>
+
+{% endblock content %}
