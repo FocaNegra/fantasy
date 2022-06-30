@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from base.custom_functions.fcf_functions import get_groups_from_category
 
 from base.custom_functions.insert_functions import insert_calendar
+from base.custom_functions.random_functions import get_random_token
 from .models import  League, Calendar, Region, Region_Group, Region_Team, User_League
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -13,6 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .custom_functions.admin_functions import get_calendar, get_players, get_region_groups, get_teams_from_groups, get_player_list_via_url
 from .custom_functions.insert_functions import insert_calendar, insert_players, insert_region_groups, insert_region_teams
 from .custom_functions.fcf_competitions_to_add import *
+from .custom_functions.random_functions import get_random_token
 
 # Create your views here.
 
@@ -95,6 +97,12 @@ def create_league(request):
             region_team = Region_Team.objects.get(id=team_id)
             name = request.POST.get('league_name')
             status = 'active'
+            token = get_random_token(6)
+            n=0
+
+            while League.objects.filter(token_to_join=token).exists() or n >=1000:
+                token = get_random_token(6)
+                n+=1
 
             if len(name) >= 1:
                 league = League.objects.create(
@@ -102,6 +110,7 @@ def create_league(request):
                     host = request.user,
                     region_team = region_team,
                     status = status,
+                    token_to_join = token,
                 )
                 u_l = User_League(
                     user = request.user,
