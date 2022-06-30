@@ -55,7 +55,7 @@ class League(models.Model):
 
 class Player(models.Model):
     name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50, blank=True)
     alias = models.CharField(max_length=50, null=True, blank=True)
     position = models.CharField(max_length=50, null=True, blank=True)
     match_report_name = models.CharField(max_length=200)

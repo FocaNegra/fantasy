@@ -28,8 +28,12 @@ def normalize_player_names(player_list, region):
     output_list = []
     if region == 'fcf':
         for match_report_name in player_list:
-            last_name = match_report_name.split(", ")[0].lower()
-            name = match_report_name.split(", ")[1].lower()
+            if "," in match_report_name:
+                last_name = match_report_name.split(", ")[0].lower()
+                name = match_report_name.split(", ")[1].lower()
+            else:
+                name = match_report_name.lower()
+                last_name = ""
             player_dict = {
                 'name': name,
                 'last_name': last_name,

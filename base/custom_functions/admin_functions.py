@@ -7,7 +7,7 @@ def get_calendar(league):
     # Creates a list with dictionaries for each week. Keys are:
     # week, season, game_date, url, status, oponent, hosting, team_enddate, punctuation_enddate, next_update
     output_class_list = []
-    url = league.schedule_url
+    url = league.region_team.schedule_url
     soup = get_soup_from_url(url)
     calendar = get_calendar_data_from_calendar_soup(soup)
     for row in calendar:
@@ -34,7 +34,7 @@ def update_model(model_to_update, new_model):
 
 def get_players(league):
     output_class_list = []
-    url = league.team_url    
+    url = league.region_team.team_url    
     soup = get_soup_from_url(url)
     player_list = get_all_players_list_from_team_soup(soup)
     playerobj_list = normalize_player_names(player_list, 'fcf')
