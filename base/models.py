@@ -45,6 +45,7 @@ class League(models.Model):
     participants = models.ManyToManyField(User, through='User_League', related_name='participants', blank=True)
     region_team = models.ForeignKey(Region_Team, on_delete=models.SET_NULL, null=True)
     status = models.CharField(max_length=50, default="active")
+    token_to_join = models.CharField(max_length=6, default="AAAAAA")
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 

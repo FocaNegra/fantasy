@@ -64,6 +64,8 @@ def onboard_league(request):
 
 
 def join_league(request):
+    if request.POST.get('action') == "Unirse a la liga":
+        pass
     context = {}
     return render(request, 'base/join_league.html', context)
 
