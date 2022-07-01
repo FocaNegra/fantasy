@@ -109,14 +109,50 @@ def get_acta_tables_from_acta_soup(soup):
     table_local_subs = main_columns[0].find('table', class_="acta-table2")
     table_visitant = main_columns[2].find_all('table', class_="acta-table")
     table_visitant_subs = main_columns[2].find('table', class_="acta-table2")
-    acta_tables = {"table_local_starters": table_local[0],
-                   "table_local_subs": table_local[1],
-                   "table_local_substitutions": table_local_subs,
-                   "table_local_cards": table_local[3],
-                   "table_visitant_starters": table_visitant[0],
-                   "table_visitant_subs": table_visitant[1],
-                   "table_visitant_substitutions": table_visitant_subs,
-                   "table_visitant_cards": table_visitant[3]}
+    tables = ["table_local_starters","table_local_subs","table_local_substitutions","table_local_cards",
+              "table_visitant_starters","table_visitant_subs","table_visitant_substitutions", "table_visitant_cards"]
+    acta_tables = {}
+    for table in tables:
+        if table == "table_local_starters":
+            try:
+                acta_tables[table] = table_local[0]
+            except:
+                acta_tables[table] = ""
+        elif table == "table_local_subs":
+            try:
+                acta_tables[table] = table_local[1]
+            except:
+                acta_tables[table] = ""
+        elif table == "table_local_substitutions":
+            try:
+                acta_tables[table] = table_local_subs
+            except:
+                acta_tables[table] = ""
+        elif table == "table_local_cards":
+            try:
+                acta_tables[table] = table_local[3]
+            except:
+                acta_tables[table] = ""
+        elif table == "table_visitant_starters":
+            try:
+                acta_tables[table] = table_visitant[0]
+            except:
+                acta_tables[table] = ""
+        elif table == "table_visitant_subs":
+            try:
+                acta_tables[table] = table_visitant[1]
+            except:
+                acta_tables[table] = ""
+        elif table == "table_visitant_substitutions":
+            try:
+                acta_tables[table] = table_visitant_subs
+            except:
+                acta_tables[table] = ""
+        elif table == "table_visitant_cards":
+            try:
+                acta_tables[table] = table_visitant[3]
+            except:
+                acta_tables[table] = ""
     return acta_tables
 
 def read_acta_stats_from_player(stats_soup):
@@ -216,11 +252,16 @@ def get_subtitution_list(taula_substitucions):
 def send_off_data(cards_table):
     output_list = []
 
-    for incident in cards_table.find('tbody').find_all('tr'):
-        name = incident.find('a').text
-        minute = int(incident.find('div', class_="acta-minut-targeta").text[:-1])
-        output_list.append([minute, name])
-        output_list = [[minute,name]] + output_list
+    if cards_table != "":
+        for incident in cards_table.find('tbody').find_all('tr'):
+            name = incident.find('a').text
+            minute_str = incident.find('div', class_="acta-minut-targeta").text[:-1]
+            if minute_str == "":
+                minute = 90
+            else:
+                minute = int(minute_str)
+            output_list.append([minute, name])
+            output_list = [[minute, name]] + output_list
 
     return output_list
 
