@@ -18,6 +18,8 @@ RESPONSIVE DESIGN
 	font-size: 1em;
 }
 
+
+
 :root {	
 	--chosencolor: #345986;	
 	--color1: #1F2833;  
@@ -39,7 +41,7 @@ h1 {
     font-weight: bold;
     color: var(--color4);
     letter-spacing: 0.9px;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.3rem;
     text-align: center;
   }
 
@@ -131,11 +133,56 @@ p {
     flex-direction: column;
 }
 
+
+
 .create-league__form {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
+
+.form__text-label {
+    align-self: center;
+    color: var(--grey);
+    font-weight: bold;
+    letter-spacing: 0.7px;
+    
+}
+.form__input-text {
+    width: 60%;
+    min-width: 250px;
+    border: 0;
+    border-bottom: 2px solid var(--grey);
+    align-self: center;
+    outline: 0;
+    font-size:  1.2rem;
+    color: white;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    text-align: center;
+}
+
+.form__input-text::placeholder {
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form__input-text:focus {
+    color: var(--color4);
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--color3),var(--color4));
+
+}
+
+.form__input-text:focus + .form__text-label {
+    transition: 0.2s;
+    color: var(--color4);
+    font-weight:700;    
+}
+
+
 
 .create-league__form-card1 {
     margin: 2rem;
