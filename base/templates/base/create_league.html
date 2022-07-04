@@ -9,7 +9,7 @@
         {% csrf_token %}
         
         <label for="league-name" class="form__text-label">Nombre de la liga</label>
-        <input type="text" name="league-name" value="{{league_name}}" class="form__input-text" placeholder="Nombre de la liga">
+        <input type="text" name="league-name" value="{{league_name}}" class="form__input-text" placeholder="Nombre de la liga" required>
         <select class="card1 create-league__form-card1" name="team_id" id="" size="{{teams.count}}">
             {% for team in teams %}
             {% if team.id == team_id %}
@@ -18,9 +18,6 @@
             <option value="{{team.id}}">{{team.name}}</option>
             {% endif %}
             {% endfor %}
-            <div class='demoScroll sc5'>
-                <div class='h500'>aa</div>
-            </div>
         </select>
         <input type="submit" value="Previsualizar equipo" name="action">
         <input type="submit" value="Crear liga" name="action"> 

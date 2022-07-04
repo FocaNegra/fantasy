@@ -102,14 +102,14 @@ def create_league(request):
         if "team_id" in request.POST:
             team_id = int(request.POST.get('team_id'))
         if "league_name" in request.POST:
-            league_name = request.POST.get('league_name')
+            league_name = request.POST.get('league-name')
         if request.POST.get('action') == "Previsualizar equipo":
             team = Region_Team.objects.get(id=str(team_id))
             player_list = get_player_list_via_url(team.team_url)
         if request.POST.get('action') == "Crear liga":
             team_id = request.POST.get('team_id')
             region_team = Region_Team.objects.get(id=team_id)
-            name = request.POST.get('league_name')
+            league_name = request.POST.get('league-name')
             status = 'active'
             token = get_random_token(6)
             n=0
@@ -118,9 +118,9 @@ def create_league(request):
                 token = get_random_token(6)
                 n+=1
 
-            if len(name) >= 1:
+            if len(league_name) >= 1:
                 league = League.objects.create(
-                    name = name,
+                    name = league_name,
                     host = request.user,
                     region_team = region_team,
                     status = status,
@@ -132,6 +132,11 @@ def create_league(request):
                     user_permission = 'admin'
                 )
                 u_l.save()
+                print("Creating the calendar")
+                insert_calendar(get_calendar(league), league)
+                print("Calender created!")
+                print("Creating league players...")                
+                insert_players(get_players(league), league)                
                 return redirect('home')
     
     
@@ -140,8 +145,11 @@ def create_league(request):
 
 
 def home(request):
-    leagues = League.objects.all()
-    context = {'leagues':leagues}
+    user = request.user
+    user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
+    league = user_league.league
+    user_league.save()
+    context = {'league':league}
     return render(request, 'base/home.html', context)
 
 def league(request, pk):
