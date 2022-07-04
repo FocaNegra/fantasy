@@ -1,3 +1,4 @@
+from email import header
 from re import I
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -60,11 +61,13 @@ def registerPage(request):
 
     return render(request, 'base/login_register.html', context)
 
+
+@login_required(login_url='login')
 def onboard_league(request):
     context = {}
     return render(request, 'base/onboard_league.html', context)
 
-
+@login_required(login_url='login')
 def join_league(request):    
     if "token" in request.POST:
         token = request.POST.get('token').lower()
@@ -85,6 +88,7 @@ def join_league(request):
     context = {}
     return render(request, 'base/join_league.html', context)
 
+@login_required(login_url='login')
 def create_league(request):
     region = Region.objects.get(id=1)
     context = {}
@@ -143,20 +147,23 @@ def create_league(request):
     context = {'region_group': region_group, 'teams':teams, 'team_id': team_id, 'league_name': league_name, 'player_list': player_list}
     return render(request, 'base/create_league.html', context)
 
-
+@login_required(login_url='login')
 def home(request):
     user = request.user
     user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
     league = user_league.league
     user_league.save()
-    context = {'league':league}
+    active_header = 0
+    context = {'league':league, 'active_header': active_header}
     return render(request, 'base/home.html', context)
 
+@login_required(login_url='login')
 def league(request, pk):
     league = League.objects.get(id=pk)
     context = {'leagues': league}
     return render(request, 'base/league.html', context)
 
+@login_required(login_url='login')
 def control(request):
     leagues = League.objects.order_by('id')[:5]
     league = {}
@@ -168,6 +175,7 @@ def control(request):
     context = {'leagues': leagues, 'league': league}
     return render(request, 'base/control.html', context)
 
+@login_required(login_url='login')
 def control_league(request, pk):
     league = League.objects.get(id=pk)
     calendar = Calendar.objects.filter(league=league)
