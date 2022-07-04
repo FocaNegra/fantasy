@@ -5,82 +5,80 @@
         </a>
     </div>
     <div class="navbar_header-nav">
-        <ul>
-            <!-- Inicio -->
-            {% if active_header == 0 %}
-            <li class="header-nav__item active">
-                <a href="/">
-                    <i class="fa-solid fa-house"></i><div class="nav-item__title">Inicio</div>
-                </a>
-            </li>
-            {% else %}
-            <li class="header-nav__item">
-                <a href="/">
-                    <i class="fa-solid fa-house"></i><div class="nav-item__title">Inicio</div>
-                </a>
-            </li>
-            {% endif %}
+        <!-- Inicio -->
+        {% if active_header == 0 %}
+        <div class="header-nav__item active">
+            <a href="/">
+                <i class="fa-solid fa-house"></i><div class="nav-item__title">Inicio</div>
+            </a>
+        </div>
+        {% else %}
+        <div class="header-nav__item">
+            <a href="/">
+                <i class="fa-solid fa-house"></i><div class="nav-item__title">Inicio</div>
+            </a>
+        </div>
+        {% endif %}
 
-            <!-- Mi 11 inicial -->
-            {% if active_header == 1 %}
-            <li class="header-nav__item active">
-                <a href="/">
-                    <i class="fa-solid fa-people-group"></i><div class="nav-item__title">11 Incial</div>
-                </a>
-            </li>
-            {% else %}
-            <li class="header-nav__item">
-                <a href="/">
-                    <i class="fa-solid fa-people-group"></i><div class="nav-item__title">11 Incial</div>
-                </a>
-            </li>
-            {% endif %}
+        <!-- Mi 11 inicial -->
+        {% if active_header == 1 %}
+        <div class="header-nav__item active">
+            <a href="/">
+                <i class="fa-solid fa-people-group"></i><div class="nav-item__title">11 Incial</div>
+            </a>
+        </div>
+        {% else %}
+        <div class="header-nav__item">
+            <a href="/">
+                <i class="fa-solid fa-people-group"></i><div class="nav-item__title">11 Incial</div>
+            </a>
+        </div>
+        {% endif %}
 
-            <!-- Mi Fantasy -->
-            {% if active_header == 2 %}
-            <li class="header-nav__item active">
-                <a href="/">
-                    <i class="fa-solid fa-people-group"></i><div class="nav-item__title">Mi Fantasy</div>
-                </a>
-            </li>
-            {% else %}
-            <li class="header-nav__item">
-                <a href="/">
-                    <i class="fa-solid fa-people-group"></i><div class="nav-item__title">Mi Fantasy</div>
-                </a>
-            </li>
-            {% endif %}
+        <!-- Mi Fantasy -->
+        {% if active_header == 2 %}
+        <div class="header-nav__item active">
+            <a href="/">
+                <i class="fa-solid fa-star"></i><div class="nav-item__title">Mi Fantasy</div>
+            </a>
+        </div>
+        {% else %}
+        <div class="header-nav__item">
+            <a href="/">
+                <i class="fa-solid fa-star"></i><div class="nav-item__title">Mi Fantasy</div>
+            </a>
+        </div>
+        {% endif %}
 
-            <!-- Clasificación -->
-            {% if active_header == 3 %}
-            <li class="header-nav__item active">
-                <a href="/">
-                    <i class="fa-solid fa-trophy"></i><div class="nav-item__title">Clasificación</div>
-                </a>
-            </li>
-            {% else %}
-            <li class="header-nav__item">
-                <a href="/">
-                    <i class="fa-solid fa-trophy"></i><div class="nav-item__title">Clasificación</div>
-                </a>
-            </li>
-            {% endif %}
+        <!-- Clasificación -->
+        {% if active_header == 3 %}
+        <div class="header-nav__item active">
+            <a href="/">
+                <i class="fa-solid fa-trophy"></i><div class="nav-item__title">Clasificación</div>
+            </a>
+        </div>
+        {% else %}
+        <div class="header-nav__item">
+            <a href="/">
+                <i class="fa-solid fa-trophy"></i><div class="nav-item__title">Clasificación</div>
+            </a>
+        </div>
+        {% endif %}
 
-            <!-- Más -->
-            {% if active_header == 3 %}
-            <li class="header-nav__item active">
-                <a href="/">
-                    <i class="fa-solid fa-gear"></i><div class="nav-item__title">Más</div>
-                </a>
-            </li>
-            {% else %}
-            <li class="header-nav__item">
-                <a href="/">
-                    <i class="fa-solid fa-gear"></i><div class="nav-item__title">Más</div>
-                </a>
-            </li>
-            {% endif %}
-        </ul>
+        <!-- Más -->
+        {% if active_header == 3 %}
+        <div class="header-nav__item active">
+            <a href="/">
+                <i class="fa-solid fa-gear"></i><div class="nav-item__title">Más</div>
+            </a>
+        </div>
+        {% else %}
+        <div class="header-nav__item">
+            <a href="/">
+                <i class="fa-solid fa-gear"></i><div class="nav-item__title">Más</div>
+            </a>
+        </div>
+        {% endif %}
     </div>
 
 

@@ -5,6 +5,7 @@ ASSETS
 SECONDARY
 ONBOARD
 CREATE LEAGUE
+NAVBAR
 RESPONSIVE DESIGN
  */
 
@@ -201,6 +202,74 @@ p {
 li {
     color: white;
 }
+
+/* NAVBAR */
+
+.navbar {
+    width: 100%;
+    z-index: 10;
+    background-color: var(--color1);    
+	box-shadow: 0px 0px 8px 5px #1117;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar__header-profile {
+    height: 2.5rem;
+    text-align: left;
+}
+
+.navbar_header-nav {
+    width: 100%;
+    max-width: 1000px;
+    align-self: center;
+    transition: 3s;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.header-nav__item {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    margin: auto;
+}
+
+.header-nav__item i {
+    color: white;
+    font-size: 1.1em;
+
+}
+
+.nav-item__title {
+    color: white;
+    font-size: 0.8em;
+    padding-top: 3px;
+}
+
+.active i {
+    color: var(--color4);
+}
+
+.active .nav-item__title {
+    color: var(--color4);
+}
+
+.header-nav__item:hover i {
+    color: var(--color4);
+}
+
+.header-nav__item:hover .nav-item__title {
+    color: var(--color4);
+}
+
+
+
+
+
 
 
 
