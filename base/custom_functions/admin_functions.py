@@ -2,6 +2,31 @@ from calendar import week
 from .fcf_functions import *
 from ..models import Calendar, League, Player, Region_Group, Region_Team
 
+def get_player_changes_from_html_form(request_post, players):
+    output_list = []
+    dict_names_list = []
+    for item in request_post:
+        if item == "action" or item=="csrfmiddlewaretoken":
+            label, value, id = "", "", ""
+            pass
+        else:
+            try:
+                label, id, value = item.split("-")[0], item.split("-")[1], request_post[item]
+            
+            except:
+                pass
+        
+        if id != "":
+            item = list(filter(lambda player: player['id']==id, output_list))
+            if item == []:
+                d={}
+                d["id"]=id
+                d[label]=value
+                output_list.append(d)
+            else:
+                item[0][label]=value            
+    return output_list
+
 
 def get_calendar(league):
     # Creates a list with dictionaries for each week. Keys are:

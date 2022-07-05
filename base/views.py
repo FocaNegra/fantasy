@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .custom_functions.admin_functions import get_calendar, get_players, get_region_groups, get_teams_from_groups, get_player_list_via_url
+from .custom_functions.admin_functions import get_calendar, get_player_changes_from_html_form, get_players, get_region_groups, get_teams_from_groups, get_player_list_via_url
 from .custom_functions.insert_functions import insert_calendar, insert_players, insert_region_groups, insert_region_teams
 from .custom_functions.fcf_competitions_to_add import *
 from .custom_functions.random_functions import get_random_token
@@ -180,6 +180,7 @@ def players(request):
         if "edit" == request.POST['action']:
             edit_mode = True
         if "save" == request.POST['action']:
+            print(get_player_changes_from_html_form(request.POST, players))
             edit_mode = False
     context = {'players': players, 'league':league, 'edit_mode': edit_mode}
     return render(request, 'base/players.html', context)

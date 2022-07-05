@@ -7,18 +7,20 @@
         <div>            
             <h1>{{league.region_team.name}}</h1>
         </div>
+        <!-- EDIT MODE OFF -->
+        {% if not edit_mode %}
         <form action="" method="POST">
             {% csrf_token %}
-            {% if edit_mode %}
-            <button type="submit" value="save" name="action">
-                <i class="fa-solid fa-bookmark"></i>            
-            </button>
-            {% else %}
             <button type="submit" value="edit" name="action">
                 <i class="fa-solid fa-pen-to-square"></i>            
-            </button>
-            {% endif %}
+            </button>  
         </form>
+        <!-- EDIT MODE ON -->
+        {% else %}
+        <button type="submit" value="save" name="action" form="players-table-form">
+            <i class="fa-solid fa-bookmark"></i>            
+        </button>
+        {% endif %}
     </div>
     
     <ul class="responsive-table">
@@ -28,6 +30,29 @@
             <div class="col col-3">Posición</div>
             <div class="col col-4">Numero</div>
         </li>
+
+    {% if edit_mode %}
+        <!-- EDIT MODE ON -->
+        <form action="" id="players-table-form" method="POST">
+        {% csrf_token %}
+        {% for player in players %}
+            <li class="table-row player-{{player.id}}">
+                <div class="col col-1">{{player.match_report_name}}</div>
+                <div class="col col-2">
+                    <input type="text" value="{{player.alias}}" name="alias-{{player.id}}" id="{{player.id}}" >
+                </div>
+                <div class="col col-3">
+                    <input type="text" value="{{player.position}}" name="position-{{player.id}}" id="{{player.id}}" >
+                </div>
+                <div class="col col-4">                    
+                    <input type="text" value="{{player.jersey_number}}" name="number-{{player.id}}" id="{{player.id}}" >
+                </div>
+            </li>
+        {% endfor %}
+        </form> 
+
+    {% else %}
+        <!-- EDIT MODE OFF -->
         {% for player in players %}
         <li class="table-row player-{{player.id}}">
             <div class="col col-1">{{player.match_report_name}}</div>
@@ -36,6 +61,8 @@
             <div class="col col-4">{{player.jersey_number}}</div>
         </li>
         {% endfor %}
+
+    {% endif %}
     </ul> 
 
 </div>
