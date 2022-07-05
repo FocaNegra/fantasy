@@ -1,4 +1,5 @@
 from email import header
+from multiprocessing import context
 from re import I
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -156,6 +157,16 @@ def home(request):
     active_header = 0
     context = {'league':league, 'active_header': active_header}
     return render(request, 'base/home.html', context)
+
+@login_required(login_url='login')
+def more(request):
+    user = request.user
+    user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
+    league = user_league.league
+    user_league.save()
+    active_header = 4
+    context = {'league': league, 'active_header': active_header}
+    return render(request, 'base/more.html', context)
 
 @login_required(login_url='login')
 def league(request, pk):
