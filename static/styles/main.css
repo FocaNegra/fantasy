@@ -59,6 +59,13 @@ p {
     color: white
 }
 
+.content {
+    position: relative;
+    margin-top: 100px;
+}
+
+
+
 /* ASSETS */
 
 .card1 {
@@ -217,7 +224,7 @@ li {
 }
 
 .navbar__header-profile {
-    height: 2.5rem;
+    height: 35px;
     text-align: left;
 }
 
@@ -226,7 +233,7 @@ li {
     max-width: 1000px;
     align-self: center;
     transition: 3s;
-    height: 4rem;
+    height: 65px;
     display: flex;
     flex-direction: row;
 }
@@ -236,6 +243,12 @@ li {
     flex-grow: 1;
     text-align: center;
     margin: auto;
+    height: 100%;
+    padding-top: 14px;
+}
+
+.header-nav__item:hover {
+    background-color: #181F27;
 }
 
 .header-nav__item i {
