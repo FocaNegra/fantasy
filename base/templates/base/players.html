@@ -1,0 +1,26 @@
+{% extends 'secondary.html' %}
+
+{% block content %}
+
+<div class="table-container">
+    <h1>{{league.region_team.name}}</h1>
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">Nombre en acta</div>
+            <div class="col col-2">Alias</div>
+            <div class="col col-3">Posición</div>
+            <div class="col col-4">Numero</div>
+        </li>
+        {% for player in players %}
+        <li class="table-row">
+            <div class="col col-1">{{player.match_report_name}}</div>
+            <div class="col col-2">{{player.alias}}</div>
+            <div class="col col-3">{{player.position}}</div>
+            <div class="col col-4">{{player.jersey_number}}</div>
+        </li>
+        {% endfor %}
+    </ul> 
+
+</div>
+
+{% endblock content %}

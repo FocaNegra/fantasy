@@ -7,7 +7,7 @@ from base.custom_functions.fcf_functions import get_groups_from_category
 
 from base.custom_functions.insert_functions import insert_calendar
 from base.custom_functions.random_functions import get_random_token
-from .models import  League, Calendar, Region, Region_Group, Region_Team, User_League
+from .models import  League, Calendar, Player, Region, Region_Group, Region_Team, User_League
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -167,6 +167,15 @@ def more(request):
     active_header = 4
     context = {'league': league, 'active_header': active_header}
     return render(request, 'base/more.html', context)
+
+@login_required(login_url='login')
+def players(request):
+    user = request.user
+    user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
+    league = user_league.league
+    players = Player.objects.filter(league=league).all()
+    context = {'players': players, 'league':league}
+    return render(request, 'base/players.html', context)
 
 @login_required(login_url='login')
 def league(request, pk):

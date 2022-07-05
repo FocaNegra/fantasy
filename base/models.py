@@ -56,10 +56,10 @@ class League(models.Model):
 class Player(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50, blank=True)
-    alias = models.CharField(max_length=50, null=True, blank=True)
-    position = models.CharField(max_length=50, null=True, blank=True)
+    alias = models.CharField(max_length=50, blank=True, default="")
+    position = models.CharField(max_length=50, blank=True, default="")
     match_report_name = models.CharField(max_length=200)
-    jersey_number = models.CharField(max_length=3, null=True, blank=True)
+    jersey_number = models.CharField(max_length=3, default="", blank=True)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
 
     def __str__(self):

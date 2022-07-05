@@ -33,7 +33,8 @@ RESPONSIVE DESIGN
 }
 
 body {
-    height: 100vh;	
+    height: 100%;
+    min-height: 100vh;	
     background: linear-gradient(180deg, var(--color1) 0%, #181F27 35%);
 }
 
@@ -45,6 +46,16 @@ body {
     display: flex;
     flex-direction: column;
     padding: 15px;
+}
+
+.content-secundary {
+    max-width: 1000px;
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
 }
 
 
@@ -99,6 +110,65 @@ p {
 .btn:hover {
     background-color: var(--color1-lighter);
 }
+
+.table-container {
+    width: 100%;
+    padding: 0px 10px;
+}
+
+.responsive-table li {
+    border-radius: 3px;
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.responsive-table .table-header {    
+    background-color: var(--color1-darker);
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;    
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+}
+
+.responsive-table .table-row {
+    background-color: var(--color1-lighter);
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+.table-header .col {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+}
+
+.table-row .col {
+    color: white;
+    font-size: 15px;
+    letter-spacing: 0.5px;    
+    font-weight: bold;
+}
+
+.col-1 {
+    flex-basis: 35%;
+}
+
+.col-2 {
+    flex-basis: 25%;
+}
+
+.col-3 {
+    flex-basis: 30%;
+}
+
+.col-4 {
+    flex-basis: 10%;
+}
+
+
 
 
 /* SECONDARY */
@@ -280,7 +350,6 @@ li {
 .header-nav__item i {
     color: white;
     font-size: 1.1em;
-
 }
 
 .nav-item__title {
