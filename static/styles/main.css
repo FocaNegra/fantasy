@@ -116,6 +116,32 @@ p {
     padding: 0px 10px;
 }
 
+.table-container__header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.table-container__header div {
+    text-align: center;
+    flex-grow: 2;
+}
+
+.table-container__header button {
+    text-align: right;
+    justify-self: end;
+    background-color: transparent;
+}
+
+.table-container__header button i {
+    color: white;
+    font-size: 30px;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
 .responsive-table li {
     border-radius: 3px;
     padding: 12px 30px;

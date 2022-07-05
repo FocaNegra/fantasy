@@ -174,7 +174,14 @@ def players(request):
     user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
     league = user_league.league
     players = Player.objects.filter(league=league).all()
-    context = {'players': players, 'league':league}
+    edit_mode = False
+
+    if request.method == 'POST':
+        if "edit" == request.POST['action']:
+            edit_mode = True
+        if "save" == request.POST['action']:
+            edit_mode = False
+    context = {'players': players, 'league':league, 'edit_mode': edit_mode}
     return render(request, 'base/players.html', context)
 
 @login_required(login_url='login')

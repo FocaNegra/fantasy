@@ -3,7 +3,24 @@
 {% block content %}
 
 <div class="table-container">
-    <h1>{{league.region_team.name}}</h1>
+    <div class="table-container__header">
+        <div>            
+            <h1>{{league.region_team.name}}</h1>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if edit_mode %}
+            <button type="submit" value="save" name="action">
+                <i class="fa-solid fa-bookmark"></i>            
+            </button>
+            {% else %}
+            <button type="submit" value="edit" name="action">
+                <i class="fa-solid fa-pen-to-square"></i>            
+            </button>
+            {% endif %}
+        </form>
+    </div>
+    
     <ul class="responsive-table">
         <li class="table-header">
             <div class="col col-1">Nombre en acta</div>
@@ -12,7 +29,7 @@
             <div class="col col-4">Numero</div>
         </li>
         {% for player in players %}
-        <li class="table-row">
+        <li class="table-row player-{{player.id}}">
             <div class="col col-1">{{player.match_report_name}}</div>
             <div class="col col-2">{{player.alias}}</div>
             <div class="col col-3">{{player.position}}</div>
