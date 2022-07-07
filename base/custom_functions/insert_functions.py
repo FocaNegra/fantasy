@@ -57,3 +57,18 @@ def insert_region_teams(region_team_to_insert):
                 print('--- saving', team)
         print(f"---> Added {n} teams in {group}\n\n")
     pass
+
+def update_player_changes(player_change_list, players):
+    # [{'id': '51', 'alias': '', 'position': '', 'number': ''}, ...]
+
+    for player_change in player_change_list:
+        if players.filter(id=player_change['id']).exists():
+            player = players.get(id=player_change['id'])
+
+            if (player.alias == player_change['alias']) and (player.position == player_change['position']) and (player.jersey_number == player_change['number']):
+                print("Player #",player_change['id'], "exists, but no changes to add.")
+            else:
+                player.alias = player_change['alias']
+
+        pass
+

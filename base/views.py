@@ -7,6 +7,7 @@ from base.custom_functions.fcf_functions import get_groups_from_category
 
 from base.custom_functions.insert_functions import insert_calendar
 from base.custom_functions.random_functions import get_random_token
+from base.forms import PlayerForm
 from .models import  League, Calendar, Player, Region, Region_Group, Region_Team, User_League
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -14,7 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .custom_functions.admin_functions import get_calendar, get_player_changes_from_html_form, get_players, get_region_groups, get_teams_from_groups, get_player_list_via_url
-from .custom_functions.insert_functions import insert_calendar, insert_players, insert_region_groups, insert_region_teams
+from .custom_functions.insert_functions import insert_calendar, insert_players, insert_region_groups, insert_region_teams, update_player_changes
 from .custom_functions.fcf_competitions_to_add import *
 from .custom_functions.random_functions import get_random_token
 
@@ -169,7 +170,7 @@ def more(request):
     return render(request, 'base/more.html', context)
 
 @login_required(login_url='login')
-def players(request):
+def players_old(request):
     user = request.user
     user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
     league = user_league.league
@@ -180,10 +181,19 @@ def players(request):
         if "edit" == request.POST['action']:
             edit_mode = True
         if "save" == request.POST['action']:
-            print(get_player_changes_from_html_form(request.POST, players))
+            player_changes_list = get_player_changes_from_html_form(request.POST, players)
+            update_player_changes(player_changes_list, players)
             edit_mode = False
     context = {'players': players, 'league':league, 'edit_mode': edit_mode}
     return render(request, 'base/players.html', context)
+
+@login_required(login_url='login')
+def players(request):
+    form = PlayerForm
+    context = {'form': form}
+    return render(request, 'base/players.html', context)
+
+
 
 @login_required(login_url='login')
 def league(request, pk):
