@@ -1,0 +1,25 @@
+{% extends 'secondary.html' %}
+
+{% block content %}
+
+<div class="table-container">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <div class="player-form">
+            {{ form }}
+            {{ form.errors }}
+            {{ form.non_field_errors }}
+        </div>
+        {% endfor %}
+        <input type="submit" name="Submit">
+    </form>
+    
+    
+
+</div>
+
+
+
+{% endblock content %}

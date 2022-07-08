@@ -1,6 +1,8 @@
+from dataclasses import field, fields
 from email import header
 from multiprocessing import context
 from re import I
+from django.forms import formset_factory, inlineformset_factory
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from base.custom_functions.fcf_functions import get_groups_from_category
@@ -170,7 +172,7 @@ def more(request):
     return render(request, 'base/more.html', context)
 
 @login_required(login_url='login')
-def players_old(request):
+def players(request):
     user = request.user
     user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
     league = user_league.league
@@ -187,11 +189,8 @@ def players_old(request):
     context = {'players': players, 'league':league, 'edit_mode': edit_mode}
     return render(request, 'base/players.html', context)
 
-@login_required(login_url='login')
-def players(request):
-    form = PlayerForm
-    context = {'form': form}
-    return render(request, 'base/players.html', context)
+
+
 
 
 
@@ -237,3 +236,20 @@ def control_league(request, pk):
     context = {'league': league, 'calendar': calendar}
     return render(request, 'base/control_league.html', context)
 
+
+
+
+# @login_required(login_url='login')
+# def players(request):    
+#     user = request.user
+#     user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
+#     league = user_league.league
+#     players = Player.objects.filter(league=league).all()
+
+#     PlayerFormSet = inlineformset_factory(League, Player, PlayerForm, extra=0, can_delete=False)
+#     formset = PlayerFormSet(instance=league)
+#     if request.method == "POST":
+#         print(request.POST)
+#     # form = PlayerForm(initial={'league':league})
+#     context = {'formset': formset}
+#     return render(request, 'base/players.html', context)

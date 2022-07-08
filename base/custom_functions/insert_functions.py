@@ -61,14 +61,36 @@ def insert_region_teams(region_team_to_insert):
 def update_player_changes(player_change_list, players):
     # [{'id': '51', 'alias': '', 'position': '', 'number': ''}, ...]
 
-    for player_change in player_change_list:
-        if players.filter(id=player_change['id']).exists():
-            player = players.get(id=player_change['id'])
+    changes_dict_list = []
 
-            if (player.alias == player_change['alias']) and (player.position == player_change['position']) and (player.jersey_number == player_change['number']):
-                print("Player #",player_change['id'], "exists, but no changes to add.")
-            else:
-                player.alias = player_change['alias']
-
-        pass
-
+    for player_changed in player_change_list:
+        if players.filter(id=player_changed['id']).exists():
+            change_dict = {}
+            player = players.get(id=player_changed['id'])
+            player_before = {
+                "alias" : player.alias,
+                "position": player.position,
+                "jersey_number": player.jersey_number,
+            }            
+            has_changed = { 
+                "id": player.id,
+                "alias" : player.alias == player_changed['alias'],
+                "position": player.position == player_changed['position'],
+                "jersey_number": player.jersey_number == player_changed['number'],
+            }
+            if not has_changed["alias"]:
+                player.alias = player_changed['alias']
+                change_dict["alias"] = {"old": player_before["alias"], "new":player_changed['alias']}
+            if not has_changed["position"]:
+                player.position = player_changed['position']
+                change_dict["position"] = {"old": player_before["position"], "new":player_changed['position']}
+            if not has_changed["jersey_number"]:
+                player.alias = player_changed['number']
+                change_dict["jersey_number"] = {"old": player_before["jersey_number"], "new":player_changed['number']}
+            player.save()
+            
+            if change_dict != {}:
+                change_dict["id"] = player.id
+                changes_dict_list.append(change_dict)
+    print(changes_dict_list)
+    return changes_dict_list
