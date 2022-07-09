@@ -187,13 +187,19 @@ p {
 /* SECONDARY */
 
 .secondary-header {
-    height: 2rem;
+    height: 4rem;
     display: block;
+    padding-left: 2rem;
 
 }
 
+.secondary-header {
+    display: inline-block;
+}
+
+
 .secondary-header__back-button {
-    margin: 1rem 2rem;
+    margin-top: 1rem;
 	width: 2.5rem;
 	height: 2.5rem;
 	border-radius: 50%;
@@ -416,6 +422,7 @@ li {
 
 .calendar-table .col-3 {
     flex-basis: 35%;
+    font-weight: lighter;
 }
 
 .calendar-table .col-4 {
