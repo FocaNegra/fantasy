@@ -97,5 +97,11 @@ class User_League(models.Model):
     def __str__(self):
         return f'{self.user.id}_{self.league.id}'
 
+class Log_Player_Edit(models.Model):
+    editor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    data = models.JSONField()
+    league = models.ForeignKey(League, on_delete=models.CASCADE, null=True)    
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
 
 

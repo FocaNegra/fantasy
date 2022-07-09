@@ -1,4 +1,5 @@
 from dataclasses import field, fields
+from distutils import log
 from email import header
 from multiprocessing import context
 from re import I
@@ -10,7 +11,7 @@ from base.custom_functions.fcf_functions import get_groups_from_category
 from base.custom_functions.insert_functions import insert_calendar
 from base.custom_functions.random_functions import get_random_token
 from base.forms import PlayerForm
-from .models import  League, Calendar, Player, Region, Region_Group, Region_Team, User_League
+from .models import  League, Calendar, Log_Player_Edit, Player, Region, Region_Group, Region_Team, User_League
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -184,7 +185,15 @@ def players(request):
             edit_mode = True
         if "save" == request.POST['action']:
             player_changes_list = get_player_changes_from_html_form(request.POST, players)
-            update_player_changes(player_changes_list, players)
+            dict_player_edit = update_player_changes(player_changes_list, players)
+            print(dict_player_edit)
+            log_player_edit = Log_Player_Edit(
+                editor = user,
+                data = dict_player_edit,
+                league = league,
+            )
+            log_player_edit.save()
+            
             edit_mode = False
     context = {'players': players, 'league':league, 'edit_mode': edit_mode}
     return render(request, 'base/players.html', context)

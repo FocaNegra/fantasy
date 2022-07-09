@@ -61,7 +61,7 @@ def insert_region_teams(region_team_to_insert):
 def update_player_changes(player_change_list, players):
     # [{'id': '51', 'alias': '', 'position': '', 'number': ''}, ...]
 
-    changes_dict_list = []
+    log_player_changes = {}
 
     for player_changed in player_change_list:
         if players.filter(id=player_changed['id']).exists():
@@ -91,6 +91,5 @@ def update_player_changes(player_change_list, players):
             
             if change_dict != {}:
                 change_dict["id"] = player.id
-                changes_dict_list.append(change_dict)
-    print(changes_dict_list)
-    return changes_dict_list
+                log_player_changes[f"player-{player.id}"] = change_dict
+    return log_player_changes
