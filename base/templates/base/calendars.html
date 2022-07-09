@@ -10,7 +10,7 @@
     <ul class="responsive-table">
         <!-- HEADER -->
         <li class="table-header">
-            <div class="col col-1">Jornada</div>
+            <div class="col col-1"></div>
             <div class="col col-2">Fecha</div>
             <div class="col col-3">Rival</div>
             <div class="col col-4">Resultado</div>
@@ -20,8 +20,19 @@
        
         {% for calendar in calendars %}
         <a href="">
-            <li class="table-row calendar-{{calendar.id}}">
-                <div class="col col-1">{{calendar.week}}</div>
+            {% if "P" in calendar.result %}
+            <li class="table-row calendar-{{calendar.id}} lost">
+            {% elif "E" in calendar.result %}
+            <li class="table-row calendar-{{calendar.id}} draw">
+            {% else %}
+            <li class="table-row calendar-{{calendar.id}} win">
+            {% endif %}
+
+                {% if calendar.hosting == "True" %}
+                <div class="col col-1"><i class="fa-solid fa-house"></i></div>
+                {% else %}
+                <div class="col col-1"><i class="fa-solid fa-plane-departure"></i></div>
+                {% endif %}
                 <div class="col col-2">{{calendar.game_date|date:"d/n/Y G:i"}}h</div>
                 <div class="col col-3">{{calendar.oponent}}</div>
                 <div class="col col-4">{{calendar.result}}</div>

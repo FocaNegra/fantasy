@@ -152,6 +152,7 @@ p {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    gap: 8px;
 }
 
 .responsive-table .table-header {    
@@ -178,8 +179,7 @@ p {
 .table-row .col {
     color: white;
     font-size: 15px;
-    letter-spacing: 0.5px;    
-    font-weight: bold;
+    letter-spacing: 0.5px;   
 }
 
 
@@ -412,27 +412,44 @@ li {
 
 /* CALENDARS */
 
+.responsive-table .win  {
+    box-shadow: 2px 2px #5aa37277;
+}
+
+.responsive-table .draw {
+    box-shadow: 2px 2px #eee78b77;
+}
+
+.responsive-table .lost {
+    box-shadow: 2px 2px #E5969177;
+}
+
 .calendar-table .col-1 {
-    flex-basis: 5%;
+    flex-basis: 3%;
+}
+.calendar-table .col-1 i {
+    font-size: 16px;
+    color: white;
+    text-shadow: 1px 1px #0002;
 }
 
 .calendar-table .col-2 {
-    flex-basis: 30%;
+    flex-basis: 20%;
 }
 
 .calendar-table .col-3 {
-    flex-basis: 35%;
-    font-weight: lighter;
+    flex-basis: 40%;
 }
 
 .calendar-table .col-4 {
     flex-basis: 15%;
+    font-weight: bold;
 }
 
 .calendar-table .col-5 {
     flex-basis: 15%;
+    font-weight: bold;
 }
-
 
 
 

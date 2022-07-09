@@ -1,5 +1,7 @@
 from asyncio.windows_events import NULL
 from email.policy import default
+from tkinter import CASCADE
+from tokenize import blank_re
 from unicodedata import category
 from django.db import models
 from django.forms import BooleanField
@@ -96,6 +98,22 @@ class User_League(models.Model):
 
     def __str__(self):
         return f'{self.user.id}_{self.league.id}'
+
+class Match_Report(models.Model):
+    calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    jersey_number = models.CharField(max_length=2, null=True, blank=True)
+    is_starter = models.CharField(max_length=10)
+    goals = models.IntegerField()
+    pk_goals = models.IntegerField()
+    auto_goals = models.IntegerField()
+    yellow_cards = models.IntegerField()
+    red_cards = models.IntegerField()
+    votation_points = models.IntegerField()
+    report_points = models.IntegerField()
+    last_update = models.DateTimeField(auto_now=True, null=True)
+    updater = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
 
 class Log_Player_Edit(models.Model):
     editor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
