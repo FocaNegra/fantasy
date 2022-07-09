@@ -142,6 +142,10 @@ p {
     margin-top: 10px;
 }
 
+.responsive-table {
+    width: 100%;
+}
+
 .responsive-table li {
     border-radius: 3px;
     padding: 12px 30px;
@@ -178,21 +182,6 @@ p {
     font-weight: bold;
 }
 
-.col-1 {
-    flex-basis: 35%;
-}
-
-.col-2 {
-    flex-basis: 25%;
-}
-
-.col-3 {
-    flex-basis: 30%;
-}
-
-.col-4 {
-    flex-basis: 10%;
-}
 
 
 /* SECONDARY */
@@ -396,6 +385,46 @@ li {
     color: var(--color4);
 }
 
+/* PLAYERS */
+
+.player-table .col-1 {
+    flex-basis: 35%;
+}
+
+.player-table .col-2 {
+    flex-basis: 25%;
+}
+
+.player-table .col-3 {
+    flex-basis: 30%;
+}
+
+.player-table .col-4 {
+    flex-basis: 10%;
+}
+
+
+/* CALENDARS */
+
+.calendar-table .col-1 {
+    flex-basis: 5%;
+}
+
+.calendar-table .col-2 {
+    flex-basis: 30%;
+}
+
+.calendar-table .col-3 {
+    flex-basis: 35%;
+}
+
+.calendar-table .col-4 {
+    flex-basis: 15%;
+}
+
+.calendar-table .col-5 {
+    flex-basis: 15%;
+}
 
 
 

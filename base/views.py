@@ -198,6 +198,15 @@ def players(request):
     context = {'players': players, 'league':league, 'edit_mode': edit_mode}
     return render(request, 'base/players.html', context)
 
+@login_required(login_url='login')
+def calendars(request):
+    user = request.user
+    user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
+    league = user_league.league
+    calendars = Calendar.objects.filter(league=league)
+    context = {"calendars": calendars}
+    
+    return render(request, 'base/calendars.html', context)
 
 
 

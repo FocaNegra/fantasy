@@ -1,0 +1,40 @@
+{% extends 'secondary.html' %}
+
+{% block content %}
+
+<div class="table-container calendar-table">
+    <div class="table-container__header">
+        <div>            
+            <h1>{{league.region_team.name}}</h1>
+        </div>
+    <ul class="responsive-table">
+        <!-- HEADER -->
+        <li class="table-header">
+            <div class="col col-1">Jornada</div>
+            <div class="col col-2">Fecha</div>
+            <div class="col col-3">Rival</div>
+            <div class="col col-4">Resultado</div>
+            <div class="col col-5">Valor equipo</div>
+        </li>
+
+       
+        {% for calendar in calendars %}
+        <a href="">
+            <li class="table-row calendar-{{calendar.id}}">
+                <div class="col col-1">{{calendar.week}}</div>
+                <div class="col col-2">{{calendar.game_date|date:"d/n/Y G:i"}}h</div>
+                <div class="col col-3">{{calendar.oponent}}</div>
+                <div class="col col-4">{{calendar.result}}</div>
+                <div class="col col-5">25.000.000 €
+
+                </div>
+            </li>
+        </a>
+        {% endfor %}
+    </ul> 
+
+</div>
+
+
+
+{% endblock content %}
