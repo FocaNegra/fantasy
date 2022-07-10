@@ -195,43 +195,52 @@ def get_player_stats_from_table(soup, is_starter):
             start_minute = 0
             final_minute = 90
 
-        output_list.append([
-            dorsal, player_name, jersey_color, is_starter,start_minute, final_minute, goals, penalty_goal, own_goals,
-            yellow_cards, red_cards
-        ])
+        output_list.append({
+            "dorsal": dorsal,
+            "player_name": player_name,
+            "jersey_color": jersey_color,
+            "is_starter": is_starter,
+            "start_minute": start_minute,
+            "final_minute": final_minute,
+            "goals": goals,
+            "penalty_goal": penalty_goal,
+            "own_goals": own_goals,
+            "yellow_cards": yellow_cards,
+            "red_cards": red_cards,
+        })
     return output_list
 
-def get_jersey_positions_using_color(player_data, color_column):
+def get_jersey_positions_using_color(player_data):
     color1 = ''
     count1 = 0
     color2 = ''
     count2 = 0
     for player in player_data:
         if color1 == '':
-            color1 = player[color_column]
+            color1 = player["jersey_color"]
             count1 += 1
-        elif color1 == player[color_column]:
+        elif color1 == player["jersey_color"]:
             count1 += 1
         elif color2 == '':
-            color2 = player[color_column]
+            color2 = player["jersey_color"]
             count2 += 1
         else:
             count2 += 1
     if count1 >= count2:
         jersey_color_dicc = {
-            color1: 'outfield',
-            color2: 'goalkeeper'
+            color1: False,
+            color2: True
         }
     else:
         jersey_color_dicc = {
-            color1: 'goalkeeper',
-            color2: 'outfield'
+            color1: True,
+            color2: False
         }
     return jersey_color_dicc
 
-def replace_color_by_position(player_data, color_column, jersey_color_dicc):
+def replace_color_by_position(player_data, jersey_color_dicc):
     for player in player_data:
-        player[color_column] = jersey_color_dicc[player[color_column]]
+        player["is_goalkeeper"] = jersey_color_dicc[player["jersey_color"]]
     return player_data
 
 def get_subtitution_list(taula_substitucions):
@@ -245,7 +254,12 @@ def get_subtitution_list(taula_substitucions):
         surt = tr[n].find('a').text
         entra = tr[n + 1].find('a').text
         n = n + 2
-        list_substitucions.append([minut, surt, entra])
+        list_substitucions.append(
+            {
+                "minut" : minut,
+                "surt": surt,
+                "entra": entra,
+            })
 
     return list_substitucions
 
@@ -260,7 +274,6 @@ def send_off_data(cards_table):
                 minute = 90
             else:
                 minute = int(minute_str)
-            output_list.append([minute, name])
             output_list = [[minute, name]] + output_list
 
     return output_list
@@ -268,8 +281,8 @@ def send_off_data(cards_table):
 def get_send_off_players(player_data):
     send_off_players = []
     for player in player_data:
-        if (player[9] > 1 or player[10] > 0):
-            send_off_players.append(player[1])
+        if (player["yellow_cards"] > 1 or player["red_cards"] > 0):
+            send_off_players.append(player["player_name"])
 
     return send_off_players
 
@@ -281,7 +294,12 @@ def add_send_off_to_subs_list(send_off_players, send_off_data, subs_list):
                 for incident in send_off_data:
                     if player == incident[1]:
                         minute = incident[0]
-                        subs_list.append([minute, player_name,''])
+                        subs_list.append(
+                            {
+                                "minut": minute,
+                                "surt": player_name,
+                                "entra": ""
+                            })
                         break
     return subs_list
 
@@ -290,23 +308,21 @@ def update_data_with_substitutions(player_data, substitution_list):
 
     for sub in substitution_list:
         for player in player_data:
-            if player[1] == sub[1]:
-                player[5] = sub[0]
-            if player[1] == sub[2]:
-                player[4] = sub[0]
-                player[5] = 90
+            if player["player_name"] == sub["surt"]:
+                player["final_minute"] = sub["minut"]
+            if player["player_name"] == sub["entra"]:
+                player["start_minute"] = sub["minut"]
+                player["final_minute"] = 90
     return player_data
 
 def update_data_with_total_minutes(player_data):
-    data = player_data
-    for player in data:
-        if player[4] == None:
-            player[4] = 0
+    for player in player_data:
+        if player["start_minute"] == None:
+            player["mins_played"] = 0
         else:
-            player[4] = player[5] - player[4]
-        player.pop(5)
+            player["mins_played"] = player["final_minute"] - player["start_minute"]
 
-    return data
+    return player_data
 
 def get_full_data_from_acta(url, is_local):
 
@@ -318,28 +334,33 @@ def get_full_data_from_acta(url, is_local):
         if is_local:
             sopa_titulars = data_acta["table_local_starters"]
             sopa_suplents = data_acta["table_local_subs"]
-            sopa_incidents = data_acta["table_local_cards"]
+            sopa_incidents = data_acta["table_local_cards"]            
+            sopa_substitucions = data_acta["table_local_substitutions"]
         else:
             sopa_titulars = data_acta["table_visitant_starters"]
             sopa_suplents = data_acta["table_visitant_subs"]
-            sopa_incidents = data_acta["table_visitant_cards"]
+            sopa_incidents = data_acta["table_visitant_cards"]            
+            sopa_substitucions = data_acta["table_visitant_substitutions"]
 
         player_data_titulars = get_player_stats_from_table(sopa_titulars, True)
-        color_dicc = get_jersey_positions_using_color(player_data_titulars, 2)
-        replace_color_by_position(player_data_titulars, 2, color_dicc)
+        color_dicc = get_jersey_positions_using_color(player_data_titulars)
+        replace_color_by_position(player_data_titulars, color_dicc)
 
         player_data_suplents = get_player_stats_from_table(sopa_suplents, False)
-        replace_color_by_position(player_data_suplents, 2, color_dicc)
+        replace_color_by_position(player_data_suplents, color_dicc)
         player_data = player_data_titulars + player_data_suplents
 
         send_off_players = get_send_off_players(player_data)
         cards_data = send_off_data(sopa_incidents)
-        subs_list = get_subtitution_list(data_acta["table_local_substitutions"])
+        subs_list = get_subtitution_list(sopa_substitucions)
 
         subs_list = add_send_off_to_subs_list(send_off_players, cards_data, subs_list)
 
         update_data_with_substitutions(player_data, subs_list)
         updated_data = update_data_with_total_minutes(player_data)
+
+        print(cards_data)
+        print(subs_list)
 
         print(updated_data)
         return updated_data
