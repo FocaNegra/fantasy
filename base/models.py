@@ -82,6 +82,7 @@ class Calendar(models.Model):
     hosting = models.CharField(max_length=8)
     team_enddate = models.DateTimeField()
     punctuation_enddate = models.DateTimeField()
+    user_teams_status = models.CharField(max_length=20, null=True, blank=True)
     last_update = models.DateTimeField(auto_now=True)
     next_update = models.DateTimeField()
 
