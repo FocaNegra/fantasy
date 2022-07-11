@@ -1,4 +1,4 @@
-from ..models import Calendar, League, Player, Region_Group, Region_Team
+from ..models import Calendar, League, Match_Report, Player, Region_Group, Region_Team
 
 
 def insert_calendar(calendar_to_insert, league):
@@ -93,3 +93,45 @@ def update_player_changes(player_change_list, players):
                 change_dict["id"] = player.id
                 log_player_changes[f"player-{player.id}"] = change_dict
     return log_player_changes
+
+
+def insert_match_report(match_report, calendar):
+    league_players = Player.objects.filter(league=calendar.league)
+    calendar_reports = Match_Report.objects.filter(calendar=calendar)
+
+    total_players_to_update = len(match_report)
+    total_players_success = 0
+    num_players_in_our_db = 0
+    num_players_failed = 0
+    for player_data in match_report:
+        if league_players.filter(match_report_name=player_data["player_name"]).exists():
+            player = league_players.get(match_report_name=player_data["player_name"])
+
+            if not calendar_reports.filter(player = player).exists():     
+                match_report_object = Match_Report(
+                    calendar = calendar,
+                    player = player,
+                    jersey_number = player_data["dorsal"],
+                    is_starter = str(player_data["is_starter"]),
+                    mins_played = int(player_data["mins_played"]),
+                    goals = int(player_data["goals"]),
+                    pk_goals = int(player_data["penalty_goal"]),
+                    auto_goals = int(player_data["own_goals"]),
+                    yellow_cards = int(player_data["yellow_cards"]),
+                    red_cards = int(player_data["red_cards"])
+                )
+                match_report_object.save()
+                total_players_success += 1
+
+            else:
+                print(f"The report for {player} already existed")
+                num_players_in_our_db += 1
+        else:
+            print(f"{player_data['player_name']} doesn't exist in our DB.league")
+            num_players_failed += 1
+    print(f"Number of players from the report: {total_players_to_update}")
+    print(f"Number of success: {total_players_success}")
+    print(f"Number of players with already report (not added): {num_players_in_our_db}")
+    print(f"Number of players not in our DB (not added): {num_players_failed}")
+
+

@@ -118,3 +118,25 @@ def get_teams_from_groups(group_list):
         group_dict['list_teams'] = teams_list
         output_dict_list.append(group_dict)
     return output_dict_list
+
+def get_match_report(calendar):
+    match_report_url = calendar.url
+    hosting = bool(calendar.hosting)
+    success = False
+    match_report = []
+
+    context = {
+        "match_report": [],
+        "success": False,
+        "calendar": calendar,
+    }
+
+    try:
+        match_report = get_full_data_from_acta(match_report_url, hosting)
+        context["success"] = True
+        context["match_report"] = match_report
+    except:
+        print("Couldn't fetch the match report data.")
+    
+    return context
+

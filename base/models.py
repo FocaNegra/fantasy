@@ -105,15 +105,19 @@ class Match_Report(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     jersey_number = models.CharField(max_length=2, null=True, blank=True)
     is_starter = models.CharField(max_length=10)
+    mins_played = models.IntegerField(default=0)
     goals = models.IntegerField()
     pk_goals = models.IntegerField()
     auto_goals = models.IntegerField()
     yellow_cards = models.IntegerField()
     red_cards = models.IntegerField()
-    votation_points = models.IntegerField()
-    report_points = models.IntegerField()
+    votation_points = models.IntegerField(null=True)
+    report_points = models.IntegerField(null=True)
     last_update = models.DateTimeField(auto_now=True, null=True)
     updater = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f'{self.calendar.league}_{self.calendar.week}_{self.player}'
 
 
 class Log_Player_Edit(models.Model):

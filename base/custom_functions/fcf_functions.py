@@ -358,11 +358,6 @@ def get_full_data_from_acta(url, is_local):
 
         update_data_with_substitutions(player_data, subs_list)
         updated_data = update_data_with_total_minutes(player_data)
-
-        print(cards_data)
-        print(subs_list)
-
-        print(updated_data)
         return updated_data
 
     else:
