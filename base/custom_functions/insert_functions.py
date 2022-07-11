@@ -124,14 +124,15 @@ def insert_match_report(match_report, calendar):
                 total_players_success += 1
 
             else:
-                print(f"The report for {player} already existed")
                 num_players_in_our_db += 1
         else:
             print(f"{player_data['player_name']} doesn't exist in our DB.league")
             num_players_failed += 1
-    print(f"Number of players from the report: {total_players_to_update}")
-    print(f"Number of success: {total_players_success}")
-    print(f"Number of players with already report (not added): {num_players_in_our_db}")
-    print(f"Number of players not in our DB (not added): {num_players_failed}")
+    print("     -"*15)
+    print(f"     Number of players from the report: {total_players_to_update}")
+    print(f"     Number of success: {total_players_success}")
+    print(f"     Number of players with already report (not added): {num_players_in_our_db}")
+    print(f"     Number of players not in our DB (not added): {num_players_failed}")
+    print("     -"*15)
 
 

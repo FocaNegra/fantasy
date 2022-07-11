@@ -121,8 +121,7 @@ def get_teams_from_groups(group_list):
 
 def get_match_report(calendar):
     match_report_url = calendar.url
-    hosting = bool(calendar.hosting)
-    success = False
+    hosting = calendar.hosting == "True"
     match_report = []
 
     context = {
@@ -139,4 +138,11 @@ def get_match_report(calendar):
         print("Couldn't fetch the match report data.")
     
     return context
+
+def get_next_calendar(league):
+    calendar_list = Calendar.objects.filter(league=league, status="open").order_by("game_date")
+    next_calendar = calendar_list[0]
+    next_calendar.status = "next"
+    next_calendar.save()
+    return next_calendar
 
