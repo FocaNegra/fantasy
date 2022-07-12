@@ -1,0 +1,1 @@
+web: gunicorn my-fantasy-team.wsgi

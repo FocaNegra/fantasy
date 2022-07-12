@@ -32,7 +32,7 @@ class Region_Group(models.Model):
 class Region_Team(models.Model):
     region_group = models.ForeignKey(Region_Group, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100, null=True)
-    alias = models.CharField(max_length=20, null=True)
+    alias = models.CharField(max_length=50, null=True)
     schedule_url = models.CharField(max_length=300, null=True)
     team_url = models.CharField(max_length=300, null=True)    
 
