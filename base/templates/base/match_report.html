@@ -7,33 +7,59 @@
 
 <div class="container-flex-row">
     <div class="table-container starters-table">
-        <div class=table-container__header>
-            <ul class="responsive-table">
-                <li class="table-header">
-                    <div class="col col-1">Titulares</div>
-                    <div class="col col-2"></div>
-                    <div class="col col-3"></div>
-    
-                </li>
-                {% for starter in starters %}
-                <li class="table-row">
-                    <div class="col col-1">{{starter.player}}</div>                
-                    <div class="col col-2">{{starter.mins_played}}'</div>                
-                    <div class="col col-3">
-                    
-                        <!-- GOALS -->
-                        {% if starter.goals > 0 %}
-                        <i class="fa-solid fa-futbol"></i>
-                        {% endif %}
-                        {% if starter.pk_goals > 0 %}
-                        <i class="fa-solid fa-futbol pk-goal"></i>
-                        {% endif %}
-
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Titulares</div>
+                <div class="col col-2"></div>
+                <div class="col col-3"></div>
+                
+            </li>
+            {% for starter in starters %}
+            <li class="table-row">
+                <div class="col col-1">{{starter.player}}</div>                
+                <div class="col col-2">{{starter.mins_played}}'</div>                
+                <div class="col col-3">
+                
+                    <!-- GOALS -->
+                    {% if starter.goals > 1 %}
+                    <div class="data-card">
+                        <i class="fa-regular fa-futbol data-card__icon goal"></i>
+                        <div class="data-card__label">{{starter.goals}}</div>
                     </div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+                    {% elif starter.goals == 1 %}
+                    <div class="data-card">
+                        <i class="fa-regular fa-futbol data-card__icon goal"></i>
+                    </div>
+                    {% endif %}
+
+                    <!-- PENALTY GOALS -->
+                    {% if starter.pk_goals > 1 %}
+                    <div class="data-card">
+                        <i class="fa-regular fa-futbol data-card__icon pk-goal"></i>
+                        <div class="data-card__label">{{starter.goals}}</div>
+                    </div>
+                    {% elif starter.pk_goals == 1 %}
+                    <div class="data-card">
+                        <i class="fa-regular fa-futbol data-card__icon pk-goal"></i>
+                    </div>
+                    {% endif %}
+
+                    <!-- AUTO GOALS -->
+                    {% if starter.auto_goals > 1 %}
+                    <div class="data-card">
+                        <i class="fa-regular fa-futbol data-card__icon auto-goal"></i>
+                        <div class="data-card__label">{{starter.goals}}</div>
+                    </div>
+                    {% elif starter.auto_goals == 1 %}
+                    <div class="data-card">
+                        <i class="fa-regular fa-futbol data-card__icon auto-goal"></i>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
     
     <div class="table-container starters-table">

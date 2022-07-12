@@ -41,7 +41,7 @@ body {
 .content {
     position: relative;
     margin: 100px auto 0px;
-    max-width: 1000px;
+    max-width: 1200px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ body {
 }
 
 .content-secundary {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 10px auto;
     width: 100%;
     display: flex;
@@ -486,30 +486,77 @@ li {
 
 .starters-table .responsive-table li {
     border-radius: 3px;
-    padding: 8px 20px;
+    padding: 2px 10px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
     gap: 2px;
 }
 
+
 .starters-table .table-row .col {
-    font-size: 11px;
+    font-size: 14px;
+    font-weight: normal;
     margin: auto;
 }
 
 .starters-table .col-1 {
     flex-basis: 60%;
     font-weight: bold;
+    padding: 8px 0px;
+    text-align: left;
 }
 
 .starters-table .col-2 {
     flex-basis: 10%;    
-    font-weight: bold;
+    font-weight: bold;    
+    padding: 8px 0px
 }
 
 .starters-table .col-3 {
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
     flex-basis: 45%;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.data-card {
+    width: 20px;
+    flex-grow: 0;
+    position: relative;
+}
+
+.data-card__icon {
+    font-size: 20px;
+    color: #000C;
+}
+
+.data-card__label {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    color: black;
+    background-color: #FFFD;
+    font-weight: bold;
+    font-size: 10px;
+    border-radius: 2px;
+    width: 7px;
+    text-align: center;
+}
+
+
+.col-3 .pk-goal {
+    text-shadow: 0px 0px 5px #83F9F0CC;
+}
+
+.col-3 .goal {
+    text-shadow: 0px 0px 5px #5AC16CDD;
+}
+
+.col-3 .auto-goal {
+    text-shadow: 0px 0px 5px #F46969DD;
 }
 
 
