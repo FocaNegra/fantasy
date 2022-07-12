@@ -1,6 +1,5 @@
 from ast import alias
 from dataclasses import fields
-from turtle import width
 from django import forms
 from django.forms import ModelForm, Widget
 from .models import Calendar, Player

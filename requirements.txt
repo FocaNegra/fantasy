@@ -36,3 +36,4 @@ uritemplate==3.0.1
 urllib3==1.26.4
 virtualenv==20.14.1
 whitenoise==6.2.0
+psycopg2==2.9.3

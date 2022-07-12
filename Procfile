@@ -1,1 +1,1 @@
-web: gunicorn my-fantasy-team.wsgi
+web: gunicorn fantasy.wsgi --log-file -

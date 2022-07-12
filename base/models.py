@@ -1,6 +1,5 @@
-from asyncio.windows_events import NULL
 from email.policy import default
-from tkinter import CASCADE
+from django.db.models.deletion import CASCADE
 from tokenize import blank_re
 from unicodedata import category
 from django.db import models
