@@ -66,9 +66,9 @@ class Player(models.Model):
 
     def __str__(self):
         if self.alias == '' or self.alias == None:
-            return f"{self.name} {self.last_name}"
+            return f"{self.name} {self.last_name}".upper()
         else:
-            return f'{self.name} "{self.alias}" {self.last_name}'
+            return self.alias.upper()
 
 class Calendar(models.Model):
     week = models.CharField(max_length=4)

@@ -11,7 +11,7 @@ from base.custom_functions.fcf_functions import get_groups_from_category
 from base.custom_functions.insert_functions import insert_calendar
 from base.custom_functions.random_functions import get_random_token
 from base.forms import PlayerForm
-from .models import  League, Calendar, Log_Player_Edit, Player, Region, Region_Group, Region_Team, User_League
+from .models import  League, Calendar, Log_Player_Edit, Match_Report, Player, Region, Region_Group, Region_Team, User_League
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -186,7 +186,6 @@ def players(request):
         if "save" == request.POST['action']:
             player_changes_list = get_player_changes_from_html_form(request.POST, players)
             dict_player_edit = update_player_changes(player_changes_list, players)
-            print(dict_player_edit)
             log_player_edit = Log_Player_Edit(
                 editor = user,
                 data = dict_player_edit,
@@ -207,6 +206,18 @@ def calendars(request):
     context = {"calendars": calendars}
     
     return render(request, 'base/calendars.html', context)
+
+def match_reports(request, pk):
+    user = request.user
+    user_league = User_League.objects.filter(user=user).order_by('-last_login')[0]
+    league = user_league.league
+    calendars = Calendar.objects.filter(league=league)
+    calendar = calendars.get(week=pk)
+    starters = Match_Report.objects.filter(calendar=calendar, is_starter="True")
+    non_starter = Match_Report.objects.filter(calendar=calendar, is_starter="False").order_by("-mins_played")
+    
+    context = {"calendar": calendar, "starters": starters, "non_starter": non_starter}
+    return render(request, 'base/match_report.html', context)
 
 
 

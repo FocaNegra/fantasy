@@ -14,7 +14,8 @@ urlpatterns = [
     path('control/league/<str:pk>/', views.control_league, name="control_league"),
     path('league/<str:pk>/', views.league, name="league"),
     path('players/', views.players, name="players"),
-    path('calendars/', views.calendars, name="calendars"),
+    path('calendars/', views.calendars, name="calendars"),    
+    path('match_reports/<str:pk>/', views.match_reports, name="match_report"),
 ]
 
 

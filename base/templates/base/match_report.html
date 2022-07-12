@@ -1,0 +1,65 @@
+{% extends 'secondary.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="container-flex-row">
+    <div class="table-container starters-table">
+        <div class=table-container__header>
+            <ul class="responsive-table">
+                <li class="table-header">
+                    <div class="col col-1">Titulares</div>
+                    <div class="col col-2"></div>
+                    <div class="col col-3"></div>
+    
+                </li>
+                {% for starter in starters %}
+                <li class="table-row">
+                    <div class="col col-1">{{starter.player}}</div>                
+                    <div class="col col-2">{{starter.mins_played}}'</div>                
+                    <div class="col col-3">
+                    
+                        <!-- GOALS -->
+                        {% if starter.goals > 0 %}
+                        <i class="fa-solid fa-futbol"></i>
+                        {% endif %}
+                        {% if starter.pk_goals > 0 %}
+                        <i class="fa-solid fa-futbol pk-goal"></i>
+                        {% endif %}
+
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="table-container starters-table">
+        <div class=table-container__header>
+            <ul class="responsive-table">
+                <li class="table-header">
+                    <div class="col col-1">Suplentes</div>
+                    <div class="col col-2"></div>
+                    <div class="col col-3"></div>
+    
+                </li>
+                {% for non_starter in non_starter %}
+                <li class="table-row">
+                    <div class="col col-1">{{non_starter.player}}</div>                
+                    <div class="col col-2">{{non_starter.mins_played}}'</div>                
+                    <div class="col col-3"></div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock content %}

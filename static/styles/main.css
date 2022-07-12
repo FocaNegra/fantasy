@@ -182,6 +182,32 @@ p {
     letter-spacing: 0.5px;   
 }
 
+.stopwatch {
+    height: 32px;
+    width: 24px;
+}
+
+.stopwatch-top {
+    width: 45%;
+    height: 8%;
+    background-color: black;
+    margin: 1px auto;
+    border-radius: 20%;
+}
+
+.stopwatch-circle {
+    margin:auto;
+    height: 75%;
+    width: 100%;
+    border-radius: 100%;
+    background-color: black;
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    font-weight: bold;
+    color: white;
+    padding-top: 7px;
+    padding-left: 2px;
+}
 
 
 /* SECONDARY */
@@ -449,6 +475,41 @@ li {
 .calendar-table .col-5 {
     flex-basis: 15%;
     font-weight: bold;
+}
+
+/* MATCH REPORTS */
+
+.container-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.starters-table .responsive-table li {
+    border-radius: 3px;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    gap: 2px;
+}
+
+.starters-table .table-row .col {
+    font-size: 11px;
+    margin: auto;
+}
+
+.starters-table .col-1 {
+    flex-basis: 60%;
+    font-weight: bold;
+}
+
+.starters-table .col-2 {
+    flex-basis: 10%;    
+    font-weight: bold;
+}
+
+.starters-table .col-3 {
+    flex-basis: 45%;
 }
 
 
